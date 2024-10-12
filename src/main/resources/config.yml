@@ -1,0 +1,34 @@
+prefix: "&x&0&0&8&b&f&d&lg&x&0&0&9&5&f&d&lF&x&0&0&9&f&f&d&lu&x&0&0&a&a&f&d&ln&x&0&0&b&4&f&d&lG&x&0&0&b&e&f&d&lu&x&0&0&c&8&f&d&ln &8» "
+
+fungun:
+  item: "BLAZE_ROD"
+  name: "&6&lꜰᴜɴɢᴜɴ &7(ʀɪɢʜᴛ-ᴄʟɪᴄᴋ)"
+  lore:
+    - "&r"
+    - "&fUse the FunGun and have"
+    - "&ffun on the server!"
+    - "&r"
+    - "&eʀɪɢʜᴛ-ᴄʟɪᴄᴋ: ꜱʜᴏᴏᴛ"
+  options:
+    give-on-join: true
+    slot: 2
+    style: LAVA # https://glowing-studios.gitbook.io/glowing-studios/our-products/plugins/gfungun/styles
+    permission: "gfungun.use"
+    permission-denied: "&cYou don't have permission to do this."
+    cooldown-system:
+      cooldown: 5
+      chat-message: "&eNext time you can use the FunGun after %duration% seconds."
+
+messages:
+  reload-success: "&x&2&b&f&b&0&0The plugin files have been successfully reloaded!"
+  no-permission: "&x&f&b&2&5&2&5You don't have permission to do this command."
+
+help-menu:
+  - "&r"
+  - "&x&0&0&8&b&f&d&lg&x&0&0&9&5&f&d&lF&x&0&0&9&f&f&d&lu&x&0&0&a&a&f&d&ln&x&0&0&b&4&f&d&lG&x&0&0&b&e&f&d&lu&x&0&0&c&8&f&d&ln &8» &fAvailable commands:"
+  - "&r"
+  - "&8&l• &b/gfungun reload &8- &7Reload the plugin config file."
+  - "&r"
+  - "&fIf u need some help join our Discord server!"
+  - "&x&7&2&8&9&d&ahttps://discord.gg/f5E4wCwG7g"
+  - "&r"

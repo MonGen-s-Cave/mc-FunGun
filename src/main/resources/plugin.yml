@@ -1,0 +1,13 @@
+name: gFunGun
+version: '${project.version}'
+main: hu.kitsoo.gfungun.GFunGun
+tab-completer: hu.kitsoo.gfungun.util.TabCompleter
+api-version: '1.16'
+commands:
+  gfungun:
+    description: 'List the command arguments'
+    aliases: ["fungun", "gfg"]
+    subcommands:
+      reload:
+        description: 'Reload the plugin files.'
+        usage: '/gfungun reload'
