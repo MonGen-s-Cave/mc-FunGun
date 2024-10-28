@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/gFunGun.iml" filepath="$PROJECT_DIR$/gFunGun.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mc-FunGun.iml" filepath="$PROJECT_DIR$/mc-FunGun.iml" />
     </modules>
   </component>
 </project>

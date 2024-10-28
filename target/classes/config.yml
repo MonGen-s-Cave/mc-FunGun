@@ -1,8 +1,26 @@
-prefix: "&x&0&0&8&b&f&d&lg&x&0&0&9&5&f&d&lF&x&0&0&9&f&f&d&lu&x&0&0&a&a&f&d&ln&x&0&0&b&4&f&d&lG&x&0&0&b&e&f&d&lu&x&0&0&c&8&f&d&ln &8» "
+prefix: "&#3597FF[FunGun] "
+
+storage:
+  #  driver: sqlite, mysql or h2
+  driver: "h2"
+
+  host: "localhost"
+  port: 3306
+  name: "database_name"
+  username: "database_username"
+  password: "database_password"
+
+  pool:
+    maximumPoolSize: 10
+    minimumIdle: 5
+    connectionTimeout: 30000
+    maxLifetime: 1800000
+    idleTimeout: 600000
 
 fungun:
   item: "BLAZE_ROD"
-  name: "&6&lꜰᴜɴɢᴜɴ &7(ʀɪɢʜᴛ-ᴄʟɪᴄᴋ)"
+  name: "&6&lꜰᴜɴɢᴜɴ"
+  custommodeldata: 10
   lore:
     - "&r"
     - "&fUse the FunGun and have"
@@ -12,23 +30,22 @@ fungun:
   options:
     give-on-join: true
     slot: 2
-    style: LAVA # https://glowing-studios.gitbook.io/glowing-studios/our-products/plugins/gfungun/styles
-    permission: "gfungun.use"
-    permission-denied: "&cYou don't have permission to do this."
-    cooldown-system:
-      cooldown: 5
-      chat-message: "&eNext time you can use the FunGun after %duration% seconds."
+    # Switchable (SHIFT + RIGHT CLICK menu)
+    # <effect-name> (SHIFT + RIGHT CLICK menu disabled)
+    style: switchable
+    # First join players FunGun style
+    default-style: lava
+    abilities:
+      # Allow LEFT CLICK ability
+      enabled: true
+      # Switchable (SHIFT + LEFT CLICK menu)
+      # <ability-name> (SHIFT + LEFT CLICK menu disabled)
+      ability: switchable
+      # First join players FunGun ability
+      # or if the player don't have selected ability
+      default-ability: none
 
-messages:
-  reload-success: "&x&2&b&f&b&0&0The plugin files have been successfully reloaded!"
-  no-permission: "&x&f&b&2&5&2&5You don't have permission to do this command."
+update-checker:
+  enable: true
 
-help-menu:
-  - "&r"
-  - "&x&0&0&8&b&f&d&lg&x&0&0&9&5&f&d&lF&x&0&0&9&f&f&d&lu&x&0&0&a&a&f&d&ln&x&0&0&b&4&f&d&lG&x&0&0&b&e&f&d&lu&x&0&0&c&8&f&d&ln &8» &fAvailable commands:"
-  - "&r"
-  - "&8&l• &b/gfungun reload &8- &7Reload the plugin config file."
-  - "&r"
-  - "&fIf u need some help join our Discord server!"
-  - "&x&7&2&8&9&d&ahttps://discord.gg/f5E4wCwG7g"
-  - "&r"
+config-version: "1"

@@ -1,0 +1,27 @@
+effect:
+  enabled: true
+  display:
+    display-item: TRIDENT
+    custommodeldata: 123457
+    display-name: "&bAqua Effect"
+    description:
+      - "Summons water and dolphin"
+      - "sounds with a splash effect."
+  options:
+    cooldown: 5
+    permission: fungun.effect.aqua
+
+sounds:
+  - ENTITY_DOLPHIN_AMBIENT,1.0,1.0
+  - BLOCK_WATER_AMBIENT,1.0,1.0
+  - ENTITY_FIREWORK_ROCKET_TWINKLE,1.0,1.0
+
+particles:
+  - WATER_SPLASH,100,1,1,1,0
+  - BUBBLE_POP,50,1,1,1,0
+  - NAUTILUS,30,1,1,1,0
+  - DRIP_WATER,30,1,1,1,0
+  - BUBBLE_COLUMN_UP,50,0.5,2.0,0.5,0
+  - WATER_BUBBLE,50,0.5,2.0,0.5,0
+
+effects-version: "1"

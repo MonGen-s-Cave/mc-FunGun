@@ -1,13 +1,21 @@
-name: gFunGun
+name: mc-FunGun
 version: '${project.version}'
-main: hu.kitsoo.gfungun.GFunGun
-tab-completer: hu.kitsoo.gfungun.util.TabCompleter
+main: hu.kxtsoo.fungun.FunGun
 api-version: '1.16'
+folia-supported: true
+
+libraries:
+  - dev.dejvokep:boosted-yaml:1.3
+  - com.zaxxer:HikariCP:5.1.0
+  - com.h2database:h2:2.1.214
+
 commands:
-  gfungun:
+  mcfungun:
     description: 'List the command arguments'
-    aliases: ["fungun", "gfg"]
     subcommands:
       reload:
         description: 'Reload the plugin files.'
-        usage: '/gfungun reload'
+        usage: '/mcfungun reload'
+      give:
+        description: 'Give a FunGun item to player'
+        usage: '/mcfungun give <player> [slot]'

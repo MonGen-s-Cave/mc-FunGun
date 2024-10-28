@@ -1,0 +1,23 @@
+effect:
+  enabled: true
+  display:
+    display-item: BLAZE_POWDER
+    custommodeldata: 123470
+    display-name: "&cWildfire Tempest Effect"
+    description:
+      - "Unleashes a tempest of wild"
+      - "fire and smoke."
+  options:
+    cooldown: 6
+    permission: fungun.effect.wildfire_tempest
+
+sounds:
+  - ENTITY_BLAZE_SHOOT,1.0,1.0
+  - BLOCK_FIRE_EXTINGUISH,1.0,1.0
+
+particles:
+  - SCULK_SOUL,100,1,1,1,0.2
+  - FLAME,80,1,1,1,0.1
+  - CAMPFIRE_SIGNAL_SMOKE,50,1,1,1,0.3
+
+effects-version: "1"

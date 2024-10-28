@@ -1,0 +1,24 @@
+effect:
+  enabled: true
+  display:
+    display-item: MOSS_BLOCK
+    custommodeldata: 123487
+    display-name: "&aGlare Moss Effect"
+    description:
+      - "Summons glowing moss with spores"
+      - "and villager particles."
+  options:
+    cooldown: 5
+    permission: fungun.effect.glare_moss
+
+sounds:
+  - ENTITY_GLOW_SQUID_AMBIENT,1.0,1.0
+  - BLOCK_MOSS_BREAK,1.0,1.0
+
+particles:
+  - FALLING_SPORE_BLOSSOM,80,1,1,1,0.1
+  - GLOW,60,1,1,1,0.05
+  - FALLING_DUST,50,1,1,1,MATERIAL.MOSS_BLOCK
+  - VILLAGER_HAPPY,50,1,1,1,0.05
+
+effects-version: "1"

@@ -1,0 +1,23 @@
+effect:
+  enabled: true
+  display:
+    display-item: ENDER_EYE
+    custommodeldata: 123481
+    display-name: "&5Mystic Flames Effect"
+    description:
+      - "Unleashes mystical flames with"
+      - "enchanting and magical particles."
+  options:
+    cooldown: 7
+    permission: fungun.effect.mystic_flames
+
+sounds:
+  - ENTITY_ENDERMAN_AMBIENT,1.0,1.0
+  - ENTITY_ENDER_DRAGON_GROWL,1.0,1.0
+
+particles:
+  - ENCHANTMENT_TABLE,80,1,1,1,0.1
+  - CRIT_MAGIC,60,1,1,1,0.05
+  - SOUL_FIRE_FLAME,50,1,1,1,0.1
+
+effects-version: "1"

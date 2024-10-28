@@ -1,0 +1,23 @@
+ability:
+  enabled: true
+  display:
+    display-item: BAT_SPAWN_EGG
+    custommodeldata: 123461
+    display-name: "&8Bat Swarm Ability"
+    description:
+      - "Summons a swarm of bats flying in your direction."
+      - "Perfect for Halloween!"
+  options:
+    cooldown: 20
+    swarm-size: 50
+    flight-duration-seconds: 5
+    speed: 0.4
+    particle: "SMOKE_LARGE"
+    start-sound: "ENTITY_BAT_AMBIENT"
+    end-sound: "ENTITY_BAT_TAKEOFF"
+
+sounds:
+  - ENTITY_BAT_AMBIENT,1.0,1.0
+  - ENTITY_BAT_TAKEOFF,0.5,1.5
+
+abilities-version: "1"

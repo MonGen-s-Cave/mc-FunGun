@@ -1,0 +1,24 @@
+effect:
+  enabled: true
+  display:
+    display-item: CHERRY_SAPLING
+    custommodeldata: 123483
+    display-name: "&dTwilight Blossom Effect"
+    description:
+      - "Summons twilight blossoms with"
+      - "soft glowing particles."
+  options:
+    cooldown: 5
+    permission: fungun.effect.twilight_blossom
+
+sounds:
+  - ENTITY_ALLAY_AMBIENT_WITHOUT_ITEM,1.0,1.0
+  - BLOCK_CHERRY_SAPLING_HIT,1.0,1.0
+
+particles:
+  - CHERRY_LEAVES,120,1,1,1,0.1
+  - GLOW,80,1,1,1,0.05
+  - ASH,50,1,1,1,0.05
+  - SPORE_BLOSSOM_AIR,40,1,1,1,0.05
+
+effects-version: "1"

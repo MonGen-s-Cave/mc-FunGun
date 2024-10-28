@@ -1,0 +1,25 @@
+effect:
+  enabled: true
+  display:
+    display-item: BLAZE_ROD
+    custommodeldata: 123456
+    display-name: "&cLava Effect"
+    description:
+      - "Casts a fiery explosion with"
+      - "lava and flame particles."
+  options:
+    cooldown: 5
+    permission: fungun.effect.lava
+
+sounds:
+  - ENTITY_GENERIC_EXPLODE,1.0,1.0
+  - ENTITY_CAT_AMBIENT,1.0,1.0
+
+particles:
+  - FLAME,50
+  - LAVA,20
+  - HEART,30
+  - ENCHANTMENT_TABLE,30
+  - PORTAL,30
+
+effects-version: "1"

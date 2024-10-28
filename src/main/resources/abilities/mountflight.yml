@@ -1,0 +1,20 @@
+ability:
+  enabled: true
+  display:
+    display-item: FEATHER
+    custommodeldata: 123460
+    display-name: "&bMount Flight Ability"
+    description:
+      - "Ride a mob and fly in the direction you're looking."
+      - "The flight lasts for a configurable duration."
+  options:
+    cooldown: 30
+    flight-duration-seconds: 5
+    speed: 0.6
+    mount-type: "PHANTOM"
+    particle: "CLOUD"
+    particle-count: 5
+    particle-offset: 0.2
+    particle-extra: 0.02
+
+abilities-version: "1"

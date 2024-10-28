@@ -1,0 +1,22 @@
+effect:
+  enabled: true
+  display:
+    display-item: PHANTOM_MEMBRANE
+    custommodeldata: 123472
+    display-name: "&7Phantom Whirl Effect"
+    description:
+      - "Summons a swirling phantom wind"
+      - "with smoke and soul fire."
+  options:
+    cooldown: 7
+    permission: fungun.effect.phantom_whirl
+
+sounds:
+  - ENTITY_PHANTOM_SWOOP,1.0,1.0
+  - ENTITY_WITHER_SPAWN,1.0,1.0
+
+particles:
+  - SMOKE_LARGE,40,1,1,1,0.2
+  - SOUL_FIRE_FLAME,30,1,1,1,0.05
+
+effects-version: "1"

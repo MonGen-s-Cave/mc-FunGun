@@ -1,0 +1,22 @@
+effect:
+  enabled: true
+  display:
+    display-item: STICK
+    custommodeldata: 123466
+    display-name: "&dWizard's Fantasy Effect"
+    description:
+      - "Unleashes magical spells with"
+      - "enchanting and crit particles."
+  options:
+    cooldown: 7
+    permission: fungun.effect.wizards_fantasy
+
+sounds:
+  - ENTITY_EVOKER_CAST_SPELL,1.0,1.0
+
+particles:
+  - ENCHANTMENT_TABLE,200,1,1,1,0.1
+  - CRIT_MAGIC,150,1,1,1,0.1
+  - SPELL,100,1,1,1,0.1
+
+effects-version: "1"

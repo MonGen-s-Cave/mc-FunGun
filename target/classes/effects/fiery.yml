@@ -1,0 +1,22 @@
+effect:
+  enabled: true
+  display:
+    display-item: MAGMA_BLOCK
+    custommodeldata: 123460
+    display-name: "&6Fiery Effect"
+    description:
+      - "Unleashes fire and lava,"
+      - "burning everything in sight."
+  options:
+    cooldown: 6
+    permission: fungun.effect.fiery
+
+sounds:
+  - BLOCK_FIRE_AMBIENT,1.0,1.0
+
+particles:
+  - FLAME,100,1,1,1,0
+  - LAVA,50,1,1,1,0
+  - SMOKE_LARGE,30,1,1,1,0
+
+effects-version: "1"

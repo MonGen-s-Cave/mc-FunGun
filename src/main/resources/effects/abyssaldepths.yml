@@ -1,0 +1,24 @@
+effect:
+  enabled: true
+  display:
+    display-item: PRISMARINE_CRYSTALS
+    custommodeldata: 123486
+    display-name: "&bAbyssal Depths Effect"
+    description:
+      - "Summons the depths of the ocean with"
+      - "bubbles and nautilus particles."
+  options:
+    cooldown: 6
+    permission: fungun.effect.abyssal_depths
+
+sounds:
+  - ENTITY_DOLPHIN_PLAY,1.0,1.0
+  - ENTITY_ELDER_GUARDIAN_AMBIENT,1.0,1.0
+
+particles:
+  - BUBBLE_COLUMN_UP,100,1,1,1,0.1
+  - DRIP_WATER,80,1,1,1,0.05
+  - NAUTILUS,60,1,1,1,0.05
+  - WATER_BUBBLE,50,1,1,1,0.05
+
+effects-version: "1"

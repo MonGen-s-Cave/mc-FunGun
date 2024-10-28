@@ -1,0 +1,23 @@
+effect:
+  enabled: true
+  display:
+    display-item: NETHER_STAR
+    custommodeldata: 123480
+    display-name: "&cNether Wisp Effect"
+    description:
+      - "Summons the wisps of the nether"
+      - "with fiery and lava particles."
+  options:
+    cooldown: 6
+    permission: fungun.effect.nether_wisp
+
+sounds:
+  - ENTITY_GHAST_AMBIENT,1.0,1.0
+  - ENTITY_STRIDER_HAPPY,1.0,1.0
+
+particles:
+  - SOUL_FIRE_FLAME,80,1,1,1,0.1
+  - LAVA,60,1,1,1,0.05
+  - ASH,40,1,1,1,0.1
+
+effects-version: "1"

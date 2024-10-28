@@ -1,0 +1,22 @@
+effect:
+  enabled: true
+  display:
+    display-item: BEACON
+    custommodeldata: 123464
+    display-name: "&8Eclipse Effect"
+    description:
+      - "Creates a dark eclipse effect"
+      - "with ash and smoke."
+  options:
+    cooldown: 7
+    permission: fungun.effect.eclipse
+
+sounds:
+  - BLOCK_BEACON_ACTIVATE,1.0,1.0
+
+particles:
+  - ASH,100,1,1,1,0
+  - COMPOSTER,50,1,1,1,0
+  - CAMPFIRE_COSY_SMOKE,30,1,1,1,0
+
+effects-version: "1"

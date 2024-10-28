@@ -1,0 +1,40 @@
+messages:
+  no-permission: "%prefix% &cYou do not have permission to use this command."
+  database-error: "%prefix% &4Database error! &cPlease contact an administrator."
+
+  fungun:
+    no-use-permission: "%prefix% &cYou do not have permission to use the FunGun."
+    no-effect-selected: "%prefix% &cYou have no effect selected. &4(SHIFT+RIGHT CLICK)"
+    no-effect-configured: "%prefix% &cThis effect does not exist. &4(Contact an administrator!)"
+    effect-cooldown: "%prefix% &ePlease wait %cooldown% seconds before using the FunGun effect again."
+    ability-cooldown: "%prefix% &ePlease wait %cooldown% seconds before using the FunGun ability again."
+
+  effects-menu:
+    open-message: "%prefix% &aYou have opened the effects menu."
+    close-message: "%prefix% &cYou have closed the effects menu."
+    effect-select: "%prefix% &fYou have successfully selected the %effect% effect."
+    effect-already-selected: "%prefix% &cThis effect is already selected."
+    effect-no-permission: "%prefix% &4Error! &cYou do not have permission to select this effect."
+
+  abilities-menu:
+    open-message: "%prefix% &aYou have opened the abilities menu."
+    close-message: "%prefix% &cYou have closed the abilities menu."
+    ability-no-permission: "%prefix% &cYou do not have permission to use the &e%ability% &cability!"
+    ability-already-selected: "%prefix% &aYou have already selected this ability: &e%ability%."
+    ability-not-selected: "%prefix% &cNo ability is currently activated. &4(SHIFT+LEFT CLICK)"
+    ability-select: "%prefix% &aYou have successfully selected the ability: &e%ability%."
+
+  reload-command:
+    usage: "%prefix% &fUsage: &7/mcfungun reload"
+    success: "%prefix% &aPlugin files have been successfully reloaded."
+    effects-loaded: "%prefix% &aSuccessfully loaded %amount% effects."
+
+  give-command:
+    success: "%prefix% &aYou have successfully given a FunGun item to player %player%!"
+    player-not-found: "%prefix% &cThe specified player was not found or is not online."
+    invalid-slot: "%prefix% &cThe specified slot number is invalid!"
+    received: "%prefix% &aYou received a FunGun item!"
+
+update-notify: "%prefix% &aA new version of the plugin is available! &8(&c%current_version% &f→ &e%latest_version%&8)"
+
+messages-version: "1"
