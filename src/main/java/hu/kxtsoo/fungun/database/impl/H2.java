@@ -69,12 +69,12 @@ public class H2 implements DatabaseInterface {
     @Override
     public String getSelectedEffect(String uuid) throws SQLException {
         String query = "SELECT selected_effect FROM fungun_users WHERE uuid = ?";
-        try (Connection connection = getConnection();
-             PreparedStatement ps = connection.prepareStatement(query)) {
+        try (PreparedStatement ps = connection.prepareStatement(query)) {
             ps.setString(1, uuid);
-            ResultSet rs = ps.executeQuery();
-            if (rs.next()) {
-                return rs.getString("selected_effect");
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    return rs.getString("selected_effect");
+                }
             }
         }
         return null;
