@@ -28,6 +28,7 @@ messages:
     usage: "%prefix% &fUsage: &7/mcfungun reload"
     success: "%prefix% &aPlugin files have been successfully reloaded."
     effects-loaded: "%prefix% &aSuccessfully loaded %amount% effects."
+    db-success: "%prefix% &aThe database has been successfully loaded.."
 
   give-command:
     success: "%prefix% &aYou have successfully given a FunGun item to player %player%!"

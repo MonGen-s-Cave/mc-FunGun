@@ -14,7 +14,7 @@ import java.sql.SQLException;
 public class ReloadCommand extends BaseCommand {
 
     @SubCommand("reload")
-    @Permission("mcfungun.admin.reload")
+    @Permission("fungun.admin.reload")
     public void executor(CommandSender sender) {
 
         FunGun.getInstance().getConfigUtil().reloadConfig();

@@ -28,6 +28,7 @@ messages:
     usage: "%prefix% &fHasználat: &7/mcfungun reload"
     success: "%prefix% &aSikeresen újratöltődtek a plugin fájlai."
     effects-loaded: "%prefix% &aSikeresen betöltve %amount% effekt."
+    db-success: "%prefix% &aAz adatbázis sikeresen betöltődött.."
 
   give-command:
     success: "%prefix% &aSikeresen adtál egy FunGun itemet %player% játékosnak!"

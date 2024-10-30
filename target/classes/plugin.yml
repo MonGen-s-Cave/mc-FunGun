@@ -1,5 +1,5 @@
 name: mc-FunGun
-version: '2.0.0'
+version: '2.0.1'
 main: hu.kxtsoo.fungun.FunGun
 api-version: '1.16'
 folia-supported: true

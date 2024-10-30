@@ -136,7 +136,7 @@ public class PlayerInteractListener implements Listener {
     }
 
     private void handleGunUse(Player player) {
-        if (!player.hasPermission("mcfungun.use")) {
+        if (!player.hasPermission("fungun.use")) {
             player.sendMessage(FunGun.getInstance().getConfigUtil().getMessage("messages.fungun.no-use-permission"));
             return;
         }
