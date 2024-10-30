@@ -1,5 +1,6 @@
 package hu.kxtsoo.fungun.events;
 
+import hu.kxtsoo.fungun.FunGun;
 import hu.kxtsoo.fungun.model.FunGunItem;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -9,7 +10,7 @@ public class PlayerDropItemListener implements Listener {
 
     @EventHandler
     public void onPlayerDropItem(PlayerDropItemEvent event) {
-        if (FunGunItem.isFunGunItem(event.getItemDrop().getItemStack())) {
+        if (FunGunItem.isFunGunItem(event.getItemDrop().getItemStack(), FunGun.getInstance().getConfigUtil())) {
             event.setCancelled(true);
         }
     }

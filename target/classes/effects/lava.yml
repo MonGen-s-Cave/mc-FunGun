@@ -16,10 +16,10 @@ sounds:
   - ENTITY_CAT_AMBIENT,1.0,1.0
 
 particles:
-  - FLAME,50
-  - LAVA,20
-  - HEART,30
-  - ENCHANTMENT_TABLE,30
-  - PORTAL,30
+  - FLAME,50,0.5,0.5,0.5,0.1
+  - LAVA,20,0.5,0.5,0.5,0.1
+  - HEART,30,0.5,0.5,0.5,0.1
+  - ENCHANTMENT_TABLE,30,0.5,0.5,0.5,0.1
+  - PORTAL,30,0.5,0.5,0.5,0.1
 
-effects-version: "1"
+effects-version: "2"

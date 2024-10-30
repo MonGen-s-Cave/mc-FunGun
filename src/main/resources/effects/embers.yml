@@ -15,8 +15,7 @@ sounds:
   - BLOCK_REDSTONE_TORCH_BURNOUT,1.0,1.0
 
 particles:
-  - REDSTONE,100,0.5,0.5,0.5,{255,0,0}
   - FLAME,50,0.5,0.5,0.5,0.05
   - LAVA,30,0.5,0.5,0.5,0.05
 
-effects-version: "1"
+effects-version: "2"

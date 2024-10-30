@@ -28,6 +28,7 @@ messages:
     usage: "%prefix% &fHasználat: &7/mcfungun reload"
     success: "%prefix% &aSikeresen újratöltődtek a plugin fájlai."
     effects-loaded: "%prefix% &aSikeresen betöltve %amount% effekt."
+    abilities-loaded: "%prefix% &aSikeresen betöltve %amount% ability."
     db-success: "%prefix% &aAz adatbázis sikeresen betöltődött.."
 
   give-command:
@@ -38,4 +39,4 @@ messages:
 
 update-notify: "%prefix% &aÚj verzió érhető el a pluginhoz!  &8(&c%current_version% &f→ &e%latest_version%&8)"
 
-messages-version: "1"
+messages-version: "2"

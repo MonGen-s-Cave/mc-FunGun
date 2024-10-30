@@ -1,5 +1,6 @@
 package hu.kxtsoo.fungun.events;
 
+import hu.kxtsoo.fungun.FunGun;
 import hu.kxtsoo.fungun.model.FunGunItem;
 import org.bukkit.GameMode;
 import org.bukkit.entity.Player;
@@ -18,7 +19,7 @@ public class InventoryClickListener implements Listener {
 
         Player player = (Player) event.getWhoClicked();
         ItemStack clickedItem = event.getCurrentItem();
-        ItemStack funGunItem = FunGunItem.createFunGunItem();
+        ItemStack funGunItem = FunGunItem.createFunGunItem(FunGun.getInstance().getConfigUtil());
 
         if (player.getGameMode() != GameMode.SURVIVAL && player.getGameMode() != GameMode.ADVENTURE) return;
 

@@ -26,7 +26,7 @@ public class GiveCommand extends BaseCommand {
             return;
         }
 
-        ItemStack funGunItem = FunGunItem.createFunGunItem();
+        ItemStack funGunItem = FunGunItem.createFunGunItem(FunGun.getInstance().getConfigUtil());
 
         if (slot != null) {
             if (slot < 0 || slot >= target.getInventory().getSize()) {

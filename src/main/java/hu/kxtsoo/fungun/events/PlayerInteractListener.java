@@ -45,7 +45,7 @@ public class PlayerInteractListener implements Listener {
         String abilityStyle = FunGun.getInstance().getConfigUtil().getConfig().getString("fungun.options.abilities.ability", "switchable");
         String defaultAbility = FunGun.getInstance().getConfigUtil().getConfig().getString("fungun.options.abilities.default-ability", "none");
 
-        if (FunGunItem.isFunGunItem(itemInHand) && event.getAction().toString().contains("RIGHT")) {
+        if (FunGunItem.isFunGunItem(itemInHand, FunGun.getInstance().getConfigUtil()) && event.getAction().toString().contains("RIGHT")) {
             String styleOption = FunGun.getInstance().getConfig().getString("fungun.options.style");
 
             if ("switchable".equalsIgnoreCase(styleOption)) {
@@ -75,7 +75,7 @@ public class PlayerInteractListener implements Listener {
             event.setCancelled(true);
         }
 
-        if (FunGunItem.isFunGunItem(itemInHand) && event.getAction().toString().contains("LEFT")) {
+        if (FunGunItem.isFunGunItem(itemInHand, FunGun.getInstance().getConfigUtil()) && event.getAction().toString().contains("LEFT")) {
 
             if (!abilitiesEnabled) {
                 return;

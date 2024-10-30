@@ -18,7 +18,7 @@ sounds:
 particles:
   - FALLING_SPORE_BLOSSOM,80,1,1,1,0.1
   - GLOW,60,1,1,1,0.05
-  - FALLING_DUST,50,1,1,1,MATERIAL.MOSS_BLOCK
+  - FALLING_DUST,50,1,1,1,MOSS_BLOCK
   - VILLAGER_HAPPY,50,1,1,1,0.05
 
-effects-version: "1"
+effects-version: "2"

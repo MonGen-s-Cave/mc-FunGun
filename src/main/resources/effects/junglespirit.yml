@@ -17,6 +17,6 @@ sounds:
 
 particles:
   - VILLAGER_HAPPY,80,1,1,1,0.1
-  - FALLING_SPORE_BLOSSOM,50,1,1,
+  - FALLING_SPORE_BLOSSOM,50,1,1,1,0.1
 
-effects-version: "1"
+effects-version: "2"

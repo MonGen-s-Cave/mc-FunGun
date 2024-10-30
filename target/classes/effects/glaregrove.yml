@@ -18,6 +18,6 @@ sounds:
 particles:
   - GLOW,50,1,1,1,0.1
   - SPORE_BLOSSOM_AIR,30,1,1,1,0.05
-  - FALLING_D
+  - FALLING_DUST,50,1,1,1,MOSS_BLOCK
 
-effects-version: "1"
+effects-version: "2"

@@ -10,7 +10,7 @@ import org.bukkit.command.CommandSender;
 
 import java.sql.SQLException;
 
-@Command("mcfungun")
+@Command(value = "mcfungun", alias = {"fungun", "mc-fungun"})
 public class ReloadCommand extends BaseCommand {
 
     @SubCommand("reload")
@@ -21,8 +21,13 @@ public class ReloadCommand extends BaseCommand {
         sender.sendMessage(FunGun.getInstance().getConfigUtil().getMessage("messages.reload-command.success"));
 
         FunGun.getInstance().getConfigUtil().reloadEffects();
-        FunGun.getInstance().getConfigUtil().reloadAbilities();
         sender.sendMessage(FunGun.getInstance().getConfigUtil().getMessage("messages.reload-command.effects-loaded").replace("%amount%", String.valueOf(FunGun.getInstance().getConfigUtil().getEffectCount())));
+
+        boolean abilitiesEnabled = FunGun.getInstance().getConfigUtil().getConfig().getBoolean("fungun.options.abilities.enabled", true);
+        if(abilitiesEnabled) {
+            FunGun.getInstance().getConfigUtil().reloadAbilities();
+            sender.sendMessage(FunGun.getInstance().getConfigUtil().getMessage("messages.reload-command.abilities-loaded").replace("%amount%", String.valueOf(FunGun.getInstance().getConfigUtil().getAbilityCount())));
+        }
 
         try {
             DatabaseManager.initialize(FunGun.getInstance().getConfigUtil(), FunGun.getInstance());
