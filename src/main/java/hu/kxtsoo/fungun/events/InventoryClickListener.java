@@ -20,7 +20,7 @@ public class InventoryClickListener implements Listener {
         ItemStack clickedItem = event.getCurrentItem();
         ItemStack funGunItem = FunGunItem.createFunGunItem();
 
-        if (player.getGameMode() != GameMode.SURVIVAL) return;
+        if (player.getGameMode() != GameMode.SURVIVAL && player.getGameMode() != GameMode.ADVENTURE) return;
 
         if (isInPlayerOrCraftingInventory(event) && clickedItem != null && clickedItem.isSimilar(funGunItem)) {
             event.setCancelled(true);

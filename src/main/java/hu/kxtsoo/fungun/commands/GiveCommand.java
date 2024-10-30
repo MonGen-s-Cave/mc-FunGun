@@ -13,11 +13,11 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
-@Command("mcfungun")
+@Command(value = "mcfungun", alias = {"fungun", "mc-fungun"})
 public class GiveCommand extends BaseCommand {
 
     @SubCommand("give")
-    @Permission("mcfungun.admin.give")
+    @Permission("fungun.admin.give")
     public void execute(CommandSender sender, @Suggestion("online_players") String playerName, @Suggestion("slot_numbers") @Optional Integer slot) {
         Player target = Bukkit.getPlayer(playerName);
 
