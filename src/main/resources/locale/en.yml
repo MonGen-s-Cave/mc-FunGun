@@ -8,6 +8,7 @@ messages:
     no-effect-configured: "%prefix% &cThis effect does not exist. &4(Contact an administrator!)"
     effect-cooldown: "%prefix% &ePlease wait %cooldown% seconds before using the FunGun effect again."
     ability-cooldown: "%prefix% &ePlease wait %cooldown% seconds before using the FunGun ability again."
+    ability-cooldown-actionbar: "%prefix% &ePlease wait %cooldown% seconds before using the FunGun ability again."
 
   effects-menu:
     open-message: "%prefix% &aYou have opened the effects menu."

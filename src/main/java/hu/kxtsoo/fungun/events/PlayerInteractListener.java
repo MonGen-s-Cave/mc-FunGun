@@ -8,6 +8,7 @@ import hu.kxtsoo.fungun.guis.AbilitiesMenu;
 import hu.kxtsoo.fungun.guis.EffectsMenu;
 import hu.kxtsoo.fungun.manager.CooldownManager;
 import hu.kxtsoo.fungun.model.FunGunItem;
+import hu.kxtsoo.fungun.util.ConfigUtil;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Snowball;
@@ -146,6 +147,12 @@ public class PlayerInteractListener implements Listener {
             if (remainingCooldown > 0 && remainingCooldown == Math.floor(remainingCooldown)) {
                 player.sendMessage(FunGun.getInstance().getConfigUtil().getMessage("messages.fungun.effect-cooldown")
                         .replace("%cooldown%", String.valueOf((int) remainingCooldown)));
+
+                String actionBarMessage = ConfigUtil.configUtil.getMessage("messages.fungun.ability-cooldown-actionbar");
+                if (actionBarMessage != null && !actionBarMessage.isEmpty()) {
+                    actionBarMessage = actionBarMessage.replace("%cooldown%", String.valueOf((int) remainingCooldown));
+                    player.sendActionBar(actionBarMessage);
+                }
             }
             return;
         }

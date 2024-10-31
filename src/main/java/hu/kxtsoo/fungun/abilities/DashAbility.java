@@ -26,6 +26,7 @@ public class DashAbility extends AbilityHandler {
         YamlDocument dashConfig = ConfigUtil.configUtil.getAbilitiesMap().get("DASH");
         if (dashConfig == null || !dashConfig.getBoolean("ability.enabled", true)) {
             return;
+
         }
 
         String permission = dashConfig.getString("ability.options.permission", "fungun.ability.dash");
@@ -39,6 +40,12 @@ public class DashAbility extends AbilityHandler {
             if (remainingCooldown > 0 && remainingCooldown == Math.floor(remainingCooldown)) {
                 player.sendMessage(FunGun.getInstance().getConfigUtil().getMessage("messages.fungun.ability-cooldown")
                         .replace("%cooldown%", String.valueOf((int) remainingCooldown)));
+
+                String actionBarMessage = ConfigUtil.configUtil.getMessage("messages.fungun.ability-cooldown-actionbar");
+                if (actionBarMessage != null && !actionBarMessage.isEmpty()) {
+                    actionBarMessage = actionBarMessage.replace("%cooldown%", String.valueOf((int) remainingCooldown));
+                    player.sendActionBar(actionBarMessage);
+                }
             }
             return;
         }

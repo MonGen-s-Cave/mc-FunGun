@@ -58,6 +58,12 @@ public class ExplosionAbility extends AbilityHandler {
             if (remainingCooldown > 0 && remainingCooldown == Math.floor(remainingCooldown)) {
                 player.sendMessage(ConfigUtil.configUtil.getMessage("messages.fungun.ability-cooldown")
                         .replace("%cooldown%", String.valueOf((int) remainingCooldown)));
+
+                String actionBarMessage = ConfigUtil.configUtil.getMessage("messages.fungun.ability-cooldown-actionbar");
+                if (actionBarMessage != null && !actionBarMessage.isEmpty()) {
+                    actionBarMessage = actionBarMessage.replace("%cooldown%", String.valueOf((int) remainingCooldown));
+                    player.sendActionBar(actionBarMessage);
+                }
             }
             return;
         }
