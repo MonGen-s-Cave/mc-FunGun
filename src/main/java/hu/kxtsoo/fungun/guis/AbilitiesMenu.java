@@ -8,6 +8,7 @@ import hu.kxtsoo.fungun.FunGun;
 import hu.kxtsoo.fungun.database.DatabaseManager;
 import hu.kxtsoo.fungun.util.ChatUtil;
 import hu.kxtsoo.fungun.util.ConfigUtil;
+import me.clip.placeholderapi.PlaceholderAPI;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Material;
 import org.bukkit.Sound;
@@ -27,7 +28,7 @@ public class AbilitiesMenu {
         ConfigUtil configUtil = FunGun.getInstance().getConfigUtil();
         var guis = configUtil.getGUIs();
 
-        String title = ChatUtil.colorizeHex(guis.getString("abilities-menu.title", "&aFunGun Abilities Menu"));
+        String title = ChatUtil.colorizeHex(PlaceholderAPI.setPlaceholders(player, guis.getString("abilities-menu.title", "&aFunGun Abilities Menu")));
         int rows = guis.getInt("abilities-menu.rows", 3);
 
         int totalSlots = rows * 9;
@@ -51,7 +52,7 @@ public class AbilitiesMenu {
         Material nextMaterial = Material.valueOf(nextItem);
 
         GuiItem previousPage = ItemBuilder.from(prevMaterial)
-                .name(Component.text(ChatUtil.colorizeHex(guis.getString("abilities-menu.navigation.previous-page.name", "&aPrevious Page"))))
+                .name(Component.text(ChatUtil.colorizeHex(PlaceholderAPI.setPlaceholders(player, guis.getString("abilities-menu.navigation.previous-page.name", "&aPrevious Page")))))
                 .asGuiItem(event -> {
                     gui.previous();
                     String soundName = FunGun.getInstance().getConfigUtil().getGUIs().getString("abilities-menu.navigation.previous-page.sound");
@@ -69,7 +70,7 @@ public class AbilitiesMenu {
                 });
 
         GuiItem nextPage = ItemBuilder.from(nextMaterial)
-                .name(Component.text(ChatUtil.colorizeHex(guis.getString("abilities-menu.navigation.next-page.name", "&aNext Page"))))
+                .name(Component.text(ChatUtil.colorizeHex(PlaceholderAPI.setPlaceholders(player, guis.getString("abilities-menu.navigation.next-page.name", "&aNext Page")))))
                 .asGuiItem(event -> {
                     gui.next();
                     String soundName = FunGun.getInstance().getConfigUtil().getGUIs().getString("abilities-menu.navigation.next-page.sound");
@@ -94,7 +95,7 @@ public class AbilitiesMenu {
         Material closeMaterial = Material.valueOf(closeItem);
 
         GuiItem closeMenu = ItemBuilder.from(closeMaterial)
-                .name(Component.text(ChatUtil.colorizeHex(guis.getString("abilities-menu.close-item.name", "&cClose Menu"))))
+                .name(Component.text(ChatUtil.colorizeHex(PlaceholderAPI.setPlaceholders(player, guis.getString("abilities-menu.close-item.name", "&cClose Menu")))))
                 .asGuiItem(event -> {
                     player.closeInventory();
                     String soundName = FunGun.getInstance().getConfigUtil().getGUIs().getString("abilities-menu.close-item.sound");
@@ -125,9 +126,9 @@ public class AbilitiesMenu {
                     displayItem = Material.BEDROCK;
                 }
 
-                String displayName = ChatUtil.colorizeHex(decoration.getString("title", "&r"));
+                String displayName = ChatUtil.colorizeHex(PlaceholderAPI.setPlaceholders(player, decoration.getString("title", "&r")));
                 List<String> lore = decoration.getStringList("lore").stream()
-                        .map(ChatUtil::colorizeHex)
+                        .map(line -> ChatUtil.colorizeHex(PlaceholderAPI.setPlaceholders(player, line)))
                         .collect(Collectors.toList());
 
                 int slot = decoration.getInt("slot", 0);
@@ -162,8 +163,10 @@ public class AbilitiesMenu {
                     displayItem = Material.BEDROCK;
                 }
 
-                String displayName = ChatUtil.colorizeHex(abilityDoc.getString("ability.display.display-name", "&cUnknown Ability"));
-                List<String> descriptionList = abilityDoc.getStringList("ability.display.description");
+                String displayName = ChatUtil.colorizeHex(PlaceholderAPI.setPlaceholders(player, abilityDoc.getString("ability.display.display-name", "&cUnknown Ability")));
+                List<String> descriptionList = abilityDoc.getStringList("ability.display.description").stream()
+                        .map(line -> ChatUtil.colorizeHex(PlaceholderAPI.setPlaceholders(player, line)))
+                        .collect(Collectors.toList());
 
                 List<String> lore = new ArrayList<>();
                 String itemDisplayName = "";
@@ -172,7 +175,10 @@ public class AbilitiesMenu {
                     itemDisplayName = guis.getString("abilities-menu.item-template.no-permission.title", "%display-name%")
                             .replace("%display-name%", displayName);
 
-                    List<String> loreTemplate = guis.getStringList("abilities-menu.item-template.no-permission.description");
+                    List<String> loreTemplate = guis.getStringList("abilities-menu.item-template.no-permission.description").stream()
+                            .map(line -> PlaceholderAPI.setPlaceholders(player, line))
+                            .map(ChatUtil::colorizeHex)
+                            .collect(Collectors.toList());
                     for (String line : loreTemplate) {
                         if (line.contains("%description%")) {
                             for (String descLine : descriptionList) {
@@ -187,7 +193,10 @@ public class AbilitiesMenu {
                     itemDisplayName = guis.getString("abilities-menu.item-template.selected.title", "%display-name%")
                             .replace("%display-name%", displayName);
 
-                    List<String> loreTemplate = guis.getStringList("abilities-menu.item-template.selected.description");
+                    List<String> loreTemplate = guis.getStringList("abilities-menu.item-template.selected.description").stream()
+                            .map(line -> PlaceholderAPI.setPlaceholders(player, line))
+                            .map(ChatUtil::colorizeHex)
+                            .collect(Collectors.toList());
                     for (String line : loreTemplate) {
                         if (line.contains("%description%")) {
                             for (String descLine : descriptionList) {
@@ -202,7 +211,10 @@ public class AbilitiesMenu {
                     itemDisplayName = guis.getString("abilities-menu.item-template.unselected.title", "%display-name%")
                             .replace("%display-name%", displayName);
 
-                    List<String> loreTemplate = guis.getStringList("abilities-menu.item-template.unselected.description");
+                    List<String> loreTemplate = guis.getStringList("abilities-menu.item-template.unselected.description").stream()
+                            .map(line -> PlaceholderAPI.setPlaceholders(player, line))
+                            .map(ChatUtil::colorizeHex)
+                            .collect(Collectors.toList());
                     for (String line : loreTemplate) {
                         if (line.contains("%description%")) {
                             for (String descLine : descriptionList) {

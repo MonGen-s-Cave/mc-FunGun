@@ -8,6 +8,7 @@ import hu.kxtsoo.fungun.FunGun;
 import hu.kxtsoo.fungun.database.DatabaseManager;
 import hu.kxtsoo.fungun.util.ChatUtil;
 import hu.kxtsoo.fungun.util.ConfigUtil;
+import me.clip.placeholderapi.PlaceholderAPI;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Material;
 import org.bukkit.Sound;
@@ -27,7 +28,7 @@ public class EffectsMenu {
         ConfigUtil configUtil = FunGun.getInstance().getConfigUtil();
         var guis = configUtil.getGUIs();
 
-        String title = ChatUtil.colorizeHex(guis.getString("effects-menu.title", "&aFunGun Effects Menu"));
+        String title = ChatUtil.colorizeHex(PlaceholderAPI.setPlaceholders(player, guis.getString("effects-menu.title", "&aFunGun Effects Menu")));
         int rows = guis.getInt("effects-menu.rows", 3);
 
         int totalSlots = rows * 9;
@@ -51,7 +52,7 @@ public class EffectsMenu {
         Material nextMaterial = Material.valueOf(nextItem);
 
         GuiItem previousPage = ItemBuilder.from(prevMaterial)
-                .name(Component.text(ChatUtil.colorizeHex(guis.getString("effects-menu.navigation.previous-page.name", "&aPrevious Page"))))
+                .name(Component.text(ChatUtil.colorizeHex(PlaceholderAPI.setPlaceholders(player, guis.getString("effects-menu.navigation.previous-page.name", "&aPrevious Page")))))
                 .asGuiItem(event -> {
                     gui.previous();
                     String soundName = FunGun.getInstance().getConfigUtil().getGUIs().getString("effects-menu.navigation.previous-page.sound");
@@ -69,7 +70,7 @@ public class EffectsMenu {
                 });
 
         GuiItem nextPage = ItemBuilder.from(nextMaterial)
-                .name(Component.text(ChatUtil.colorizeHex(guis.getString("effects-menu.navigation.next-page.name", "&aNext Page"))))
+                .name(Component.text(ChatUtil.colorizeHex(PlaceholderAPI.setPlaceholders(player, guis.getString("effects-menu.navigation.next-page.name", "&aNext Page")))))
                 .asGuiItem(event -> {
                     gui.next();
                     String soundName = FunGun.getInstance().getConfigUtil().getGUIs().getString("effects-menu.navigation.next-page.sound");
@@ -94,7 +95,7 @@ public class EffectsMenu {
         Material closeMaterial = Material.valueOf(closeItem);
 
         GuiItem closeMenu = ItemBuilder.from(closeMaterial)
-                .name(Component.text(ChatUtil.colorizeHex(guis.getString("effects-menu.close-item.name", "&cClose Menu"))))
+                .name(Component.text(ChatUtil.colorizeHex(PlaceholderAPI.setPlaceholders(player, guis.getString("effects-menu.close-item.name", "&cClose Menu")))))
                 .asGuiItem(event -> {
                     player.closeInventory();
                     String soundName = FunGun.getInstance().getConfigUtil().getGUIs().getString("effects-menu.close-item.sound");
@@ -126,9 +127,9 @@ public class EffectsMenu {
                     displayItem = Material.BEDROCK;
                 }
 
-                String displayName = ChatUtil.colorizeHex(decoration.getString("title", "&r"));
+                String displayName = ChatUtil.colorizeHex(PlaceholderAPI.setPlaceholders(player, decoration.getString("title", "&r")));
                 List<String> lore = decoration.getStringList("lore").stream()
-                        .map(ChatUtil::colorizeHex)
+                        .map(line -> ChatUtil.colorizeHex(PlaceholderAPI.setPlaceholders(player, line)))
                         .collect(Collectors.toList());
 
                 int slot = decoration.getInt("slot", 0);
@@ -163,8 +164,10 @@ public class EffectsMenu {
                     displayItem = Material.BEDROCK;
                 }
 
-                String displayName = ChatUtil.colorizeHex(effectDoc.getString("effect.display.display-name", "&cUnknown Effect"));
-                List<String> descriptionList = effectDoc.getStringList("effect.display.description");
+                String displayName = ChatUtil.colorizeHex(PlaceholderAPI.setPlaceholders(player, effectDoc.getString("effect.display.display-name", "&cUnknown Effect")));
+                List<String> descriptionList = effectDoc.getStringList("effect.display.description").stream()
+                        .map(line -> ChatUtil.colorizeHex(PlaceholderAPI.setPlaceholders(player, line)))
+                        .collect(Collectors.toList());
 
                 List<String> lore = new ArrayList<>();
                 String itemDisplayName = "";
@@ -173,7 +176,9 @@ public class EffectsMenu {
                     itemDisplayName = guis.getString("effects-menu.item-template.no-permission.title", "%display-name%")
                             .replace("%display-name%", displayName);
 
-                    List<String> loreTemplate = guis.getStringList("effects-menu.item-template.no-permission.description");
+                    List<String> loreTemplate = guis.getStringList("effects-menu.item-template.no-permission.description").stream()
+                            .map(line -> ChatUtil.colorizeHex(PlaceholderAPI.setPlaceholders(player, line)))
+                            .collect(Collectors.toList());
                     for (String line : loreTemplate) {
                         if (line.contains("%description%")) {
                             for (String descLine : descriptionList) {
@@ -188,7 +193,9 @@ public class EffectsMenu {
                     itemDisplayName = guis.getString("effects-menu.item-template.selected.title", "%display-name%")
                             .replace("%display-name%", displayName);
 
-                    List<String> loreTemplate = guis.getStringList("effects-menu.item-template.selected.description");
+                    List<String> loreTemplate = guis.getStringList("effects-menu.item-template.selected.description").stream()
+                            .map(line -> ChatUtil.colorizeHex(PlaceholderAPI.setPlaceholders(player, line)))
+                            .collect(Collectors.toList());
                     for (String line : loreTemplate) {
                         if (line.contains("%description%")) {
                             for (String descLine : descriptionList) {
@@ -203,7 +210,9 @@ public class EffectsMenu {
                     itemDisplayName = guis.getString("effects-menu.item-template.unselected.title", "%display-name%")
                             .replace("%display-name%", displayName);
 
-                    List<String> loreTemplate = guis.getStringList("effects-menu.item-template.unselected.description");
+                    List<String> loreTemplate = guis.getStringList("effects-menu.item-template.unselected.description").stream()
+                            .map(line -> ChatUtil.colorizeHex(PlaceholderAPI.setPlaceholders(player, line)))
+                            .collect(Collectors.toList());
                     for (String line : loreTemplate) {
                         if (line.contains("%description%")) {
                             for (String descLine : descriptionList) {
