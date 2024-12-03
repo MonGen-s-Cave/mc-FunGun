@@ -2,8 +2,10 @@ package hu.kxtsoo.fungun;
 
 import hu.kxtsoo.fungun.database.DatabaseManager;
 import hu.kxtsoo.fungun.events.*;
+import hu.kxtsoo.fungun.hooks.HookManager;
 import hu.kxtsoo.fungun.manager.CommandManager;
 import hu.kxtsoo.fungun.manager.CooldownManager;
+import hu.kxtsoo.fungun.manager.SchedulerManager;
 import hu.kxtsoo.fungun.util.ConfigUtil;
 import hu.kxtsoo.fungun.util.UpdateChecker;
 import org.bstats.bukkit.Metrics;
@@ -28,6 +30,13 @@ public final class FunGun extends JavaPlugin {
 
         this.configUtil = new ConfigUtil(this);
         ConfigUtil.configUtil = this.configUtil;
+
+        SchedulerManager.run(new Runnable() {
+            @Override
+            public void run() {
+                new HookManager().updateHooks();
+            }
+        });
 
         try {
             DatabaseManager.initialize(configUtil, this);

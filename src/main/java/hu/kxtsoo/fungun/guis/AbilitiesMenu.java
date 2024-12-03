@@ -6,6 +6,7 @@ import dev.triumphteam.gui.guis.GuiItem;
 import dev.triumphteam.gui.guis.PaginatedGui;
 import hu.kxtsoo.fungun.FunGun;
 import hu.kxtsoo.fungun.database.DatabaseManager;
+import hu.kxtsoo.fungun.reflection.ClassUtils;
 import hu.kxtsoo.fungun.util.ChatUtil;
 import hu.kxtsoo.fungun.util.ConfigUtil;
 import me.clip.placeholderapi.PlaceholderAPI;
@@ -28,7 +29,15 @@ public class AbilitiesMenu {
         ConfigUtil configUtil = FunGun.getInstance().getConfigUtil();
         var guis = configUtil.getGUIs();
 
-        String title = ChatUtil.colorizeHex(PlaceholderAPI.setPlaceholders(player, guis.getString("abilities-menu.title", "&aFunGun Abilities Menu")));
+        String title = guis.getString("abilities-menu.title", "&aFunGun Abilities Menu");
+
+        if (ClassUtils.INSTANCE.classExists("me.clip.placeholderapi.PlaceholderAPI")) {
+            title = PlaceholderAPI.setPlaceholders(player, title);
+        } else {
+            title = guis.getString("abilities-menu.title", "&aFunGun Abilities Menu");
+        }
+
+        title = ChatUtil.colorizeHex(title);
         int rows = guis.getInt("abilities-menu.rows", 3);
 
         int totalSlots = rows * 9;
@@ -51,8 +60,18 @@ public class AbilitiesMenu {
         Material prevMaterial = Material.valueOf(prevItem);
         Material nextMaterial = Material.valueOf(nextItem);
 
+        String previousPageName = guis.getString("abilities-menu.navigation.previous-page.name", "&aPrevious Page");
+
+        if (ClassUtils.INSTANCE.classExists("me.clip.placeholderapi.PlaceholderAPI")) {
+            previousPageName = PlaceholderAPI.setPlaceholders(player, previousPageName);
+        } else {
+            previousPageName = guis.getString("abilities-menu.navigation.previous-page.name", "&aPrevious Page");
+        }
+
+        previousPageName = ChatUtil.colorizeHex(previousPageName);
+
         GuiItem previousPage = ItemBuilder.from(prevMaterial)
-                .name(Component.text(ChatUtil.colorizeHex(PlaceholderAPI.setPlaceholders(player, guis.getString("abilities-menu.navigation.previous-page.name", "&aPrevious Page")))))
+                .name(Component.text(previousPageName))
                 .asGuiItem(event -> {
                     gui.previous();
                     String soundName = FunGun.getInstance().getConfigUtil().getGUIs().getString("abilities-menu.navigation.previous-page.sound");
@@ -69,8 +88,18 @@ public class AbilitiesMenu {
                     event.setCancelled(true);
                 });
 
+        String nextPageName = guis.getString("abilities-menu.navigation.next-page.name", "&aNext Page");
+
+        if (ClassUtils.INSTANCE.classExists("me.clip.placeholderapi.PlaceholderAPI")) {
+            nextPageName = PlaceholderAPI.setPlaceholders(player, nextPageName);
+        } else {
+            nextPageName = guis.getString("abilities-menu.navigation.next-page.name", "&aNext Page");
+        }
+
+        nextPageName = ChatUtil.colorizeHex(nextPageName);
+
         GuiItem nextPage = ItemBuilder.from(nextMaterial)
-                .name(Component.text(ChatUtil.colorizeHex(PlaceholderAPI.setPlaceholders(player, guis.getString("abilities-menu.navigation.next-page.name", "&aNext Page")))))
+                .name(Component.text(nextPageName))
                 .asGuiItem(event -> {
                     gui.next();
                     String soundName = FunGun.getInstance().getConfigUtil().getGUIs().getString("abilities-menu.navigation.next-page.sound");
@@ -94,8 +123,18 @@ public class AbilitiesMenu {
         String closeItem = guis.getString("abilities-menu.close-item.item", "BARRIER");
         Material closeMaterial = Material.valueOf(closeItem);
 
+        String closeMenuName = guis.getString("abilities-menu.close-item.name", "&cClose Menu");
+
+        if (ClassUtils.INSTANCE.classExists("me.clip.placeholderapi.PlaceholderAPI")) {
+            closeMenuName = PlaceholderAPI.setPlaceholders(player, closeMenuName);
+        } else {
+            closeMenuName = guis.getString("abilities-menu.close-item.name", "&cClose Menu");
+        }
+
+        closeMenuName = ChatUtil.colorizeHex(closeMenuName);
+
         GuiItem closeMenu = ItemBuilder.from(closeMaterial)
-                .name(Component.text(ChatUtil.colorizeHex(PlaceholderAPI.setPlaceholders(player, guis.getString("abilities-menu.close-item.name", "&cClose Menu")))))
+                .name(Component.text(closeMenuName))
                 .asGuiItem(event -> {
                     player.closeInventory();
                     String soundName = FunGun.getInstance().getConfigUtil().getGUIs().getString("abilities-menu.close-item.sound");
@@ -126,9 +165,24 @@ public class AbilitiesMenu {
                     displayItem = Material.BEDROCK;
                 }
 
-                String displayName = ChatUtil.colorizeHex(PlaceholderAPI.setPlaceholders(player, decoration.getString("title", "&r")));
+                String displayName = decoration.getString("title", "&r");
+
+                if (ClassUtils.INSTANCE.classExists("me.clip.placeholderapi.PlaceholderAPI")) {
+                    displayName = PlaceholderAPI.setPlaceholders(player, displayName);
+                } else {
+                    displayName = decoration.getString("title", "&r");
+                }
+
+                displayName = ChatUtil.colorizeHex(displayName);
+
                 List<String> lore = decoration.getStringList("lore").stream()
-                        .map(line -> ChatUtil.colorizeHex(PlaceholderAPI.setPlaceholders(player, line)))
+                        .map(line -> {
+                            if (ClassUtils.INSTANCE.classExists("me.clip.placeholderapi.PlaceholderAPI")) {
+                                return ChatUtil.colorizeHex(PlaceholderAPI.setPlaceholders(player, line));
+                            } else {
+                                return ChatUtil.colorizeHex(line);
+                            }
+                        })
                         .collect(Collectors.toList());
 
                 int slot = decoration.getInt("slot", 0);
@@ -163,9 +217,24 @@ public class AbilitiesMenu {
                     displayItem = Material.BEDROCK;
                 }
 
-                String displayName = ChatUtil.colorizeHex(PlaceholderAPI.setPlaceholders(player, abilityDoc.getString("ability.display.display-name", "&cUnknown Ability")));
+                String displayName = abilityDoc.getString("ability.display.display-name", "&cUnknown Ability");
+
+                if (ClassUtils.INSTANCE.classExists("me.clip.placeholderapi.PlaceholderAPI")) {
+                    displayName = PlaceholderAPI.setPlaceholders(player, displayName);
+                } else {
+                    displayName = abilityDoc.getString("ability.display.display-name", "&cUnknown Ability");
+                }
+
+                displayName = ChatUtil.colorizeHex(displayName);
+
                 List<String> descriptionList = abilityDoc.getStringList("ability.display.description").stream()
-                        .map(line -> ChatUtil.colorizeHex(PlaceholderAPI.setPlaceholders(player, line)))
+                        .map(line -> {
+                            if (ClassUtils.INSTANCE.classExists("me.clip.placeholderapi.PlaceholderAPI")) {
+                                return ChatUtil.colorizeHex(PlaceholderAPI.setPlaceholders(player, line));
+                            } else {
+                                return ChatUtil.colorizeHex(line);
+                            }
+                        })
                         .collect(Collectors.toList());
 
                 List<String> lore = new ArrayList<>();
@@ -176,7 +245,14 @@ public class AbilitiesMenu {
                             .replace("%display-name%", displayName);
 
                     List<String> loreTemplate = guis.getStringList("abilities-menu.item-template.no-permission.description").stream()
-                            .map(line -> PlaceholderAPI.setPlaceholders(player, line))
+                            .map(line -> {
+                                if (ClassUtils.INSTANCE.classExists("me.clip.placeholderapi.PlaceholderAPI")) {
+                                    return ChatUtil.colorizeHex(PlaceholderAPI.setPlaceholders(player, line));
+                                } else {
+                                    return line;
+                                }
+
+                            })
                             .map(ChatUtil::colorizeHex)
                             .collect(Collectors.toList());
                     for (String line : loreTemplate) {
@@ -194,7 +270,13 @@ public class AbilitiesMenu {
                             .replace("%display-name%", displayName);
 
                     List<String> loreTemplate = guis.getStringList("abilities-menu.item-template.selected.description").stream()
-                            .map(line -> PlaceholderAPI.setPlaceholders(player, line))
+                            .map(line -> {
+                                if (ClassUtils.INSTANCE.classExists("me.clip.placeholderapi.PlaceholderAPI")) {
+                                    return PlaceholderAPI.setPlaceholders(player, line);
+                                } else {
+                                    return line;
+                                }
+                            })
                             .map(ChatUtil::colorizeHex)
                             .collect(Collectors.toList());
                     for (String line : loreTemplate) {
@@ -212,7 +294,13 @@ public class AbilitiesMenu {
                             .replace("%display-name%", displayName);
 
                     List<String> loreTemplate = guis.getStringList("abilities-menu.item-template.unselected.description").stream()
-                            .map(line -> PlaceholderAPI.setPlaceholders(player, line))
+                            .map(line -> {
+                                if (ClassUtils.INSTANCE.classExists("me.clip.placeholderapi.PlaceholderAPI")) {
+                                    return PlaceholderAPI.setPlaceholders(player, line);
+                                } else {
+                                    return line;
+                                }
+                            })
                             .map(ChatUtil::colorizeHex)
                             .collect(Collectors.toList());
                     for (String line : loreTemplate) {
@@ -226,6 +314,7 @@ public class AbilitiesMenu {
                     }
                 }
 
+                String finalDisplayName = displayName;
                 GuiItem guiItem = ItemBuilder.from(displayItem)
                         .name(Component.text(itemDisplayName))
                         .lore(lore.stream().map(Component::text).collect(Collectors.toList()))
@@ -233,7 +322,7 @@ public class AbilitiesMenu {
                             try {
                                 if (!player.hasPermission("fungun.ability." + abilityKey)) {
                                     if (!configUtil.getMessage("messages.abilities-menu.ability-no-permission").isEmpty()) {
-                                        player.sendMessage(configUtil.getMessage("messages.abilities-menu.ability-no-permission").replace("%ability%", displayName));
+                                        player.sendMessage(configUtil.getMessage("messages.abilities-menu.ability-no-permission").replace("%ability%", finalDisplayName));
                                     }
 
                                     String soundName = FunGun.getInstance().getConfigUtil().getGUIs().getString("abilities-menu.item-template.no-permission.sound");
@@ -248,7 +337,7 @@ public class AbilitiesMenu {
                                     }
                                 } else if (DatabaseManager.isAbilitySelected(player.getUniqueId().toString(), abilityKey)) {
                                     if (!configUtil.getMessage("messages.abilities-menu.ability-already-selected").isEmpty()) {
-                                        player.sendMessage(configUtil.getMessage("messages.abilities-menu.ability-already-selected").replace("%ability%", displayName));
+                                        player.sendMessage(configUtil.getMessage("messages.abilities-menu.ability-already-selected").replace("%ability%", finalDisplayName));
                                     }
                                     String soundName = FunGun.getInstance().getConfigUtil().getGUIs().getString("abilities-menu.item-template.selected.sound");
 
@@ -264,7 +353,7 @@ public class AbilitiesMenu {
                                     DatabaseManager.saveSelectedAbility(player.getUniqueId().toString(), abilityKey);
 
                                     if (!configUtil.getMessage("messages.abilities-menu.ability-select").isEmpty()) {
-                                        player.sendMessage(configUtil.getMessage("messages.abilities-menu.ability-select").replace("%ability%", displayName));
+                                        player.sendMessage(configUtil.getMessage("messages.abilities-menu.ability-select").replace("%ability%", finalDisplayName));
                                     }
 
                                     String soundName = FunGun.getInstance().getConfigUtil().getGUIs().getString("abilities-menu.item-template.unselected.sound");

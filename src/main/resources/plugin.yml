@@ -4,6 +4,8 @@ main: hu.kxtsoo.fungun.FunGun
 api-version: '1.16'
 folia-supported: true
 authors: [ "kxtsoo", "Zsomi5" ]
+softdepend:
+  - PlaceholderAPI
 
 libraries:
   - dev.dejvokep:boosted-yaml:1.3

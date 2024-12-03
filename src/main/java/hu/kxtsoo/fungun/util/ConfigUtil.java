@@ -25,6 +25,7 @@ public class ConfigUtil {
     private YamlDocument effects;
     private YamlDocument guis;
     private YamlDocument messages;
+    private YamlDocument hooks;
     private final Map<String, YamlDocument> effectsMap = new HashMap<>();
     private final Map<String, YamlDocument> abilitiesMap = new HashMap<>();
 
@@ -35,6 +36,27 @@ public class ConfigUtil {
         loadAbilities();
         setupGUIs();
         setupMessages();
+        setupHooks();
+    }
+
+    public void setupHooks() {
+        try {
+            File hooksFile = new File(plugin.getDataFolder(), "hooks.yml");
+            if (!hooksFile.exists()) {
+                plugin.saveResource("hooks.yml", false);
+            }
+
+            hooks = YamlDocument.create(hooksFile,
+                    Objects.requireNonNull(plugin.getResource("hooks.yml")),
+                    GeneralSettings.builder().setUseDefaults(false).build(),
+                    LoaderSettings.DEFAULT, DumperSettings.DEFAULT,
+                    UpdaterSettings.builder().setKeepAll(true)
+                            .setVersioning(new BasicVersioning("version")).build());
+
+            hooks.update();
+        } catch (IOException ex) {
+            plugin.getLogger().severe("Error loading or creating hooks.yml: " + ex.getMessage());
+        }
     }
 
     public void setupConfig() {
@@ -282,6 +304,10 @@ public class ConfigUtil {
         return guis;
     }
 
+    public YamlDocument getHook() {
+        return hooks;
+    }
+
     public void reloadConfig() {
         setupConfig();
         setupMessages();
@@ -295,4 +321,5 @@ public class ConfigUtil {
     public void reloadAbilities() {
         loadAbilities();
     }
+
 }
