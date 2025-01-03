@@ -3,7 +3,7 @@ version: '${project.version}'
 main: hu.kxtsoo.fungun.FunGun
 api-version: '1.16'
 folia-supported: true
-authors: [ "kxtsoo", "Zsomi5" ]
+authors: [ "kxtsoo", "Zsomi5", "Leonidas"]
 softdepend:
   - PlaceholderAPI
 
