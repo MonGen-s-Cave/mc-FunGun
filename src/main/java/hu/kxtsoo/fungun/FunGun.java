@@ -52,6 +52,8 @@ public final class FunGun extends JavaPlugin {
 
         this.cooldownManager = new CooldownManager(this);
         getServer().getPluginManager().registerEvents(new PlayerJoinListener(), this);
+        getServer().getPluginManager().registerEvents(new PlayerTeleportListener(), this);
+        getServer().getPluginManager().registerEvents(new WorldChangeListener(), this);
         getServer().getPluginManager().registerEvents(new PlayerInteractListener(this, cooldownManager), this);
         getServer().getPluginManager().registerEvents(new ProjectileHitListener(this), this);
         getServer().getPluginManager().registerEvents(new InventoryClickListener(), this);

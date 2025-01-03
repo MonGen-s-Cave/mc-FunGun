@@ -31,6 +31,9 @@ fungun:
     - "&eʀɪɢʜᴛ-ᴄʟɪᴄᴋ: ꜱʜᴏᴏᴛ"
   options:
     give-on-join: true
+    # List of disabled worlds, where the fungun disappears
+    disabled-worlds:
+      - world_nether
     slot: 2
     # Switchable (SHIFT + RIGHT CLICK menu)
     # <effect-name> (SHIFT + RIGHT CLICK menu disabled)

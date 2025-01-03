@@ -1,8 +1,10 @@
 package hu.kxtsoo.fungun.model;
 
+import hu.kxtsoo.fungun.FunGun;
 import hu.kxtsoo.fungun.util.ChatUtil;
 import hu.kxtsoo.fungun.util.ConfigUtil;
 import org.bukkit.Material;
+import org.bukkit.World;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
@@ -41,5 +43,9 @@ public class FunGunItem {
         return item.getType() == funGunItem.getType() &&
                 Objects.equals(item.getItemMeta().displayName(), funGunItem.getItemMeta().displayName()) &&
                 Objects.equals(item.getItemMeta().lore(), funGunItem.getItemMeta().lore());
+    }
+
+    public static boolean isWorldDisabled(World world){
+        return FunGun.getInstance().getConfigUtil().getConfig().getStringList("fungun.options.disabled-worlds").contains(world.getName());
     }
 }
