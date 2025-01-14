@@ -88,6 +88,15 @@ public class AbilitiesMenu {
                     event.setCancelled(true);
                 });
 
+        if (guis.contains("abilities-menu.navigation.previous-page.custom-model-data")) {
+            int customModelData = guis.getInt("abilities-menu.navigation.previous-page.custom-model-data");
+            ItemMeta meta = previousPage.getItemStack().getItemMeta();
+            if (meta != null) {
+                meta.setCustomModelData(customModelData);
+                previousPage.getItemStack().setItemMeta(meta);
+            }
+        }
+
         String nextPageName = guis.getString("abilities-menu.navigation.next-page.name", "&aNext Page");
 
         if (ClassUtils.INSTANCE.classExists("me.clip.placeholderapi.PlaceholderAPI")) {
@@ -115,6 +124,15 @@ public class AbilitiesMenu {
                     gui.update();
                     event.setCancelled(true);
                 });
+
+        if (guis.contains("abilities-menu.navigation.next-page.custom-model-data")) {
+            int customModelData = guis.getInt("abilities-menu.navigation.next-page.custom-model-data");
+            ItemMeta meta = nextPage.getItemStack().getItemMeta();
+            if (meta != null) {
+                meta.setCustomModelData(customModelData);
+                nextPage.getItemStack().setItemMeta(meta);
+            }
+        }
 
         for (int slot : prevSlots) {
             gui.setItem(slot, previousPage);
@@ -153,6 +171,15 @@ public class AbilitiesMenu {
                     }
                     event.setCancelled(true);
                 });
+
+        if (guis.contains("abilities-menu.close-item.custom-model-data")) {
+            int customModelData = guis.getInt("abilities-menu.close-item.custom-model-data");
+            ItemMeta meta = closeMenu.getItemStack().getItemMeta();
+            if (meta != null) {
+                meta.setCustomModelData(customModelData);
+                closeMenu.getItemStack().setItemMeta(meta);
+            }
+        }
 
         for (int slot : closeSlots) {
             gui.setItem(slot, closeMenu);

@@ -110,6 +110,24 @@ public class EffectsMenu {
                     event.setCancelled(true);
                 });
 
+        if (guis.contains("effects-menu.navigation.previous-page.custom-model-data")) {
+            int customModelData = guis.getInt("effects-menu.navigation.previous-page.custom-model-data");
+            ItemMeta meta = previousPage.getItemStack().getItemMeta();
+            if (meta != null) {
+                meta.setCustomModelData(customModelData);
+                previousPage.getItemStack().setItemMeta(meta);
+            }
+        }
+
+        if (guis.contains("effects-menu.navigation.next-page.custom-model-data")) {
+            int customModelData = guis.getInt("effects-menu.navigation.next-page.custom-model-data");
+            ItemMeta meta = nextPage.getItemStack().getItemMeta();
+            if (meta != null) {
+                meta.setCustomModelData(customModelData);
+                nextPage.getItemStack().setItemMeta(meta);
+            }
+        }
+
         for (int slot : prevSlots) {
             gui.setItem(slot, previousPage);
         }
@@ -145,6 +163,15 @@ public class EffectsMenu {
                     }
                     event.setCancelled(true);
                 });
+
+        if (guis.contains("effects-menu.close-item.custom-model-data")) {
+            int customModelData = guis.getInt("effects-menu.close-item.custom-model-data");
+            ItemMeta meta = closeMenu.getItemStack().getItemMeta();
+            if (meta != null) {
+                meta.setCustomModelData(customModelData);
+                closeMenu.getItemStack().setItemMeta(meta);
+            }
+        }
 
         for (int slot : closeSlots) {
             gui.setItem(slot, closeMenu);
