@@ -43,18 +43,18 @@ effects-menu:
         - "&6⭐ ᴄʟɪᴄᴋ ʜᴇʀᴇ ᴛᴏ sᴇʟᴇᴄᴛ"
   navigation:
     previous-page:
-      slot: 20
+      slots: [20]
       item: "ARROW"
       name: "&ePrevious Page"
       sound: "ENTITY_ARROW_HIT_PLAYER"
     next-page:
-      slot: 24
+      slots: [24]
       item: "SPECTRAL_ARROW"
       name: "&aNext Page"
       sound: "ENTITY_ARROW_HIT_PLAYER"
 
   close-item:
-    slot: 22
+    slots: [22]
     item: "BARRIER"
     name: "&cClose Menu"
     sound: "BLOCK_BARREL_CLOSE"
@@ -101,18 +101,18 @@ abilities-menu:
 
   navigation:
     previous-page:
-      slot: 20
+      slots: [20]
       item: "ARROW"
       name: "&ePrevious Page"
       sound: "ENTITY_ARROW_HIT_PLAYER"
     next-page:
-      slot: 24
+      slots: [24]
       item: "SPECTRAL_ARROW"
       name: "&aNext Page"
       sound: "ENTITY_ARROW_HIT_PLAYER"
 
   close-item:
-    slot: 22
+    slots: [22]
     item: "BARRIER"
     name: "&cClose Menu"
     sound: "BLOCK_BARREL_CLOSE"
@@ -183,4 +183,4 @@ abilities-menu:
         - "&r"
         - "&6⭐ ᴄʟɪᴄᴋ ʜᴇʀᴇ ᴛᴏ sᴇʟᴇᴄᴛ"
 
-guis-version: "1"
+guis-version: "2"

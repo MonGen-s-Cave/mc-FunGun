@@ -54,8 +54,8 @@ public class AbilitiesMenu {
         String prevItem = guis.getString("abilities-menu.navigation.previous-page.item", "ARROW");
         String nextItem = guis.getString("abilities-menu.navigation.next-page.item", "ARROW");
 
-        int prevSlot = guis.getInt("abilities-menu.navigation.previous-page.slot", 19);
-        int nextSlot = guis.getInt("abilities-menu.navigation.next-page.slot", 25);
+        List<Integer> prevSlots = guis.getIntList("abilities-menu.navigation.previous-page.slots");
+        List<Integer> nextSlots = guis.getIntList("abilities-menu.navigation.next-page.slots");
 
         Material prevMaterial = Material.valueOf(prevItem);
         Material nextMaterial = Material.valueOf(nextItem);
@@ -116,10 +116,14 @@ public class AbilitiesMenu {
                     event.setCancelled(true);
                 });
 
-        gui.setItem(prevSlot, previousPage);
-        gui.setItem(nextSlot, nextPage);
+        for (int slot : prevSlots) {
+            gui.setItem(slot, previousPage);
+        }
+        for (int slot : nextSlots) {
+            gui.setItem(slot, nextPage);
+        }
 
-        int closeSlot = guis.getInt("abilities-menu.close-item.slot", 22);
+        List<Integer> closeSlots = guis.getIntList("abilities-menu.close-item.slots");
         String closeItem = guis.getString("abilities-menu.close-item.item", "BARRIER");
         Material closeMaterial = Material.valueOf(closeItem);
 
@@ -150,7 +154,9 @@ public class AbilitiesMenu {
                     event.setCancelled(true);
                 });
 
-        gui.setItem(closeSlot, closeMenu);
+        for (int slot : closeSlots) {
+            gui.setItem(slot, closeMenu);
+        }
 
         var decorations = guis.getSection("abilities-menu.decoration");
         if (decorations != null) {
