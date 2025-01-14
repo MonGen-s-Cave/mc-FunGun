@@ -145,8 +145,10 @@ public class PlayerInteractListener implements Listener {
         if (cooldownHandler.hasEffectCooldown(player)) {
             double remainingCooldown = cooldownHandler.getRemainingEffectCooldown(player);
             if (remainingCooldown > 0 && remainingCooldown == Math.floor(remainingCooldown)) {
-                player.sendMessage(FunGun.getInstance().getConfigUtil().getMessage("messages.fungun.effect-cooldown")
-                        .replace("%cooldown%", String.valueOf((int) remainingCooldown)));
+                if(!FunGun.getInstance().getConfigUtil().getMessage("messages.fungun.effect-cooldown").isEmpty()) {
+                    player.sendMessage(FunGun.getInstance().getConfigUtil().getMessage("messages.fungun.effect-cooldown")
+                            .replace("%cooldown%", String.valueOf((int) remainingCooldown)));
+                }
 
                 String actionBarMessage = ConfigUtil.configUtil.getMessage("messages.fungun.ability-cooldown-actionbar");
                 if (actionBarMessage != null && !actionBarMessage.isEmpty()) {

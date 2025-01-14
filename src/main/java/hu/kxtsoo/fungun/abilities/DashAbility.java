@@ -1,7 +1,6 @@
 package hu.kxtsoo.fungun.abilities;
 
 import dev.dejvokep.boostedyaml.YamlDocument;
-import hu.kxtsoo.fungun.FunGun;
 import hu.kxtsoo.fungun.manager.CooldownManager;
 import hu.kxtsoo.fungun.util.ConfigUtil;
 import org.bukkit.Particle;
@@ -38,8 +37,10 @@ public class DashAbility extends AbilityHandler {
         if (getCooldownManager().hasAbilityCooldown(player)) {
             int remainingCooldown = getCooldownManager().getRemainingAbilityCooldown(player);
             if (remainingCooldown > 0 && remainingCooldown == Math.floor(remainingCooldown)) {
-                player.sendMessage(FunGun.getInstance().getConfigUtil().getMessage("messages.fungun.ability-cooldown")
-                        .replace("%cooldown%", String.valueOf((int) remainingCooldown)));
+                if(!ConfigUtil.configUtil.getMessage("messages.fungun.ability-cooldown").isEmpty()) {
+                    player.sendMessage(ConfigUtil.configUtil.getMessage("messages.fungun.ability-cooldown")
+                            .replace("%cooldown%", String.valueOf((int) remainingCooldown)));
+                }
 
                 String actionBarMessage = ConfigUtil.configUtil.getMessage("messages.fungun.ability-cooldown-actionbar");
                 if (actionBarMessage != null && !actionBarMessage.isEmpty()) {
