@@ -56,15 +56,10 @@ public class PlayerInteractListener implements Listener {
                     if (!openMessage.isEmpty()) {
                         player.sendMessage(openMessage);
                     }
-                    String soundName = FunGun.getInstance().getConfigUtil().getGUIs().getString("effects-menu.open-sound");
 
+                    String soundName = FunGun.getInstance().getConfigUtil().getGUIs().getString("effects-menu.open-sound");
                     if (!soundName.isEmpty()) {
-                        try {
-                            Sound sound = Sound.valueOf(soundName);
-                            player.playSound(player.getLocation(), sound, 1, 1);
-                        } catch (IllegalArgumentException e) {
-                            getLogger().warning("The sound is invalid in guis.yml (effects-menu/open-sound)");
-                        }
+                        player.playSound(player.getLocation(), soundName, 1, 1);
                     }
                 } else {
                     handleGunUse(player);
@@ -105,12 +100,7 @@ public class PlayerInteractListener implements Listener {
                     }
                     String soundName = FunGun.getInstance().getConfigUtil().getGUIs().getString("abilities-menu.open-sound");
                     if (!soundName.isEmpty()) {
-                        try {
-                            Sound sound = Sound.valueOf(soundName);
-                            player.playSound(player.getLocation(), sound, 1, 1);
-                        } catch (IllegalArgumentException e) {
-                            getLogger().warning("The sound is invalid in guis.yml (abilities-menu/open-sound)");
-                        }
+                        player.playSound(player.getLocation(), soundName, 1, 1);
                     }
                 } else {
                     if (selectedAbility == null || selectedAbility.isEmpty()) {

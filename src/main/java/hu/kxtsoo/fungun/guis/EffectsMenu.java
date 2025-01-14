@@ -70,15 +70,10 @@ public class EffectsMenu {
                 .name(Component.text(previousPageName))
                 .asGuiItem(event -> {
                     gui.previous();
-                    String soundName = FunGun.getInstance().getConfigUtil().getGUIs().getString("effects-menu.navigation.previous-page.sound");
 
+                    String soundName = FunGun.getInstance().getConfigUtil().getGUIs().getString("effects-menu.navigation.previous-page.sound");
                     if (!soundName.isEmpty()) {
-                        try {
-                            Sound sound = Sound.valueOf(soundName);
-                            player.playSound(player.getLocation(), sound, 1, 1);
-                        } catch (IllegalArgumentException e) {
-                            getLogger().warning("The sound is invalid in guis.yml (effects-menu/navigation/previous-page)");
-                        }
+                        player.playSound(player.getLocation(), soundName, 1, 1);
                     }
                     gui.update();
                     event.setCancelled(true);
@@ -96,15 +91,10 @@ public class EffectsMenu {
                 .name(Component.text(nextPageName))
                 .asGuiItem(event -> {
                     gui.next();
-                    String soundName = FunGun.getInstance().getConfigUtil().getGUIs().getString("effects-menu.navigation.next-page.sound");
 
+                    String soundName = FunGun.getInstance().getConfigUtil().getGUIs().getString("effects-menu.navigation.next-page.sound");
                     if (!soundName.isEmpty()) {
-                        try {
-                            Sound sound = Sound.valueOf(soundName);
-                            player.playSound(player.getLocation(), sound, 1, 1);
-                        } catch (IllegalArgumentException e) {
-                            getLogger().warning("The sound is invalid in guis.yml (effects-menu/navigation/next-page)");
-                        }
+                        player.playSound(player.getLocation(), soundName, 1.0f, 1.0f);
                     }
                     gui.update();
                     event.setCancelled(true);
@@ -151,16 +141,12 @@ public class EffectsMenu {
                 .name(Component.text(closeMenuName))
                 .asGuiItem(event -> {
                     player.closeInventory();
-                    String soundName = FunGun.getInstance().getConfigUtil().getGUIs().getString("effects-menu.close-item.sound");
 
+                    String soundName = FunGun.getInstance().getConfigUtil().getGUIs().getString("effects-menu.close-item.sound");
                     if (!soundName.isEmpty()) {
-                        try {
-                            Sound sound = Sound.valueOf(soundName);
-                            player.playSound(player.getLocation(), sound, 1, 1);
-                        } catch (IllegalArgumentException e) {
-                            getLogger().warning("The sound is invalid in guis.yml (effects-menu/close-item)");
-                        }
+                        player.playSound(player.getLocation(), soundName, 1, 1);
                     }
+
                     event.setCancelled(true);
                 });
 
