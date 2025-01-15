@@ -11,8 +11,9 @@ import hu.kxtsoo.fungun.util.ChatUtil;
 import hu.kxtsoo.fungun.util.ConfigUtil;
 import me.clip.placeholderapi.PlaceholderAPI;
 import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.format.TextDecoration;
+import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer;
 import org.bukkit.Material;
-import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.meta.ItemMeta;
 
@@ -20,8 +21,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
-
-import static org.bukkit.Bukkit.getLogger;
 
 public class EffectsMenu {
 
@@ -42,7 +41,9 @@ public class EffectsMenu {
         int maxEffectSlot = guis.getInt("effects-menu.max-item-slot", totalSlots - 1);
 
         PaginatedGui gui = Gui.paginated()
-                .title(Component.text(title))
+                .title(LegacyComponentSerializer.legacySection()
+                        .deserialize(title)
+                        .decoration(TextDecoration.ITALIC, false))
                 .rows(rows)
                 .pageSize(maxEffectSlot)
                 .create();
@@ -66,8 +67,26 @@ public class EffectsMenu {
         }
         previousPageName = ChatUtil.colorizeHex(previousPageName);
 
+        List<String> previousPageLore = guis.getStringList("effects-menu.navigation.previous-page.lore").stream()
+                .map(line -> {
+                    if (ClassUtils.INSTANCE.classExists("me.clip.placeholderapi.PlaceholderAPI")) {
+                        return PlaceholderAPI.setPlaceholders(player, line);
+                    } else {
+                        return line;
+                    }
+                })
+                .map(ChatUtil::colorizeHex)
+                .toList();
+
         GuiItem previousPage = ItemBuilder.from(prevMaterial)
-                .name(Component.text(previousPageName))
+                .name(LegacyComponentSerializer.legacySection()
+                        .deserialize(previousPageName)
+                        .decoration(TextDecoration.ITALIC, false))
+                .lore(previousPageLore.stream()
+                        .map(line -> LegacyComponentSerializer.legacySection()
+                                .deserialize(line)
+                                .decoration(TextDecoration.ITALIC, false))
+                        .collect(Collectors.toList()))
                 .asGuiItem(event -> {
                     gui.previous();
 
@@ -87,8 +106,26 @@ public class EffectsMenu {
         }
         nextPageName = ChatUtil.colorizeHex(nextPageName);
 
+        List<String> nextPageLore = guis.getStringList("effects-menu.navigation.next-page.lore").stream()
+                .map(line -> {
+                    if (ClassUtils.INSTANCE.classExists("me.clip.placeholderapi.PlaceholderAPI")) {
+                        return PlaceholderAPI.setPlaceholders(player, line);
+                    } else {
+                        return line;
+                    }
+                })
+                .map(ChatUtil::colorizeHex)
+                .toList();
+
         GuiItem nextPage = ItemBuilder.from(nextMaterial)
-                .name(Component.text(nextPageName))
+                .name(LegacyComponentSerializer.legacySection()
+                        .deserialize(nextPageName)
+                        .decoration(TextDecoration.ITALIC, false))
+                .lore(nextPageLore.stream()
+                        .map(line -> LegacyComponentSerializer.legacySection()
+                                .deserialize(line)
+                                .decoration(TextDecoration.ITALIC, false))
+                        .collect(Collectors.toList()))
                 .asGuiItem(event -> {
                     gui.next();
 
@@ -137,8 +174,26 @@ public class EffectsMenu {
         }
         closeMenuName = ChatUtil.colorizeHex(closeMenuName);
 
+        List<String> closeLore = guis.getStringList("effects-menu.close-item.lore").stream()
+                .map(line -> {
+                    if (ClassUtils.INSTANCE.classExists("me.clip.placeholderapi.PlaceholderAPI")) {
+                        return PlaceholderAPI.setPlaceholders(player, line);
+                    } else {
+                        return line;
+                    }
+                })
+                .map(ChatUtil::colorizeHex)
+                .toList();
+
         GuiItem closeMenu = ItemBuilder.from(closeMaterial)
-                .name(Component.text(closeMenuName))
+                .name(LegacyComponentSerializer.legacySection()
+                        .deserialize(closeMenuName)
+                        .decoration(TextDecoration.ITALIC, false))
+                .lore(closeLore.stream()
+                        .map(line -> LegacyComponentSerializer.legacySection()
+                                .deserialize(line)
+                                .decoration(TextDecoration.ITALIC, false))
+                        .collect(Collectors.toList()))
                 .asGuiItem(event -> {
                     player.closeInventory();
 
@@ -250,10 +305,10 @@ public class EffectsMenu {
                 String itemDisplayName = "";
 
                 if (!player.hasPermission("fungun.effect." + effectKey)) {
-                    itemDisplayName = guis.getString("effects-menu.item-template.no-permission.title", "%display-name%")
-                            .replace("%display-name%", displayName);
+                    itemDisplayName = ChatUtil.colorizeHex(guis.getString("effects-menu.item-template.no-permission.title", "%display-name%")
+                            .replace("%display-name%", displayName));
 
-                    List<String> loreTemplate = guis.getStringList("effects-menu.item-template.no-permission.description").stream()
+                     List<String> loreTemplate = guis.getStringList("effects-menu.item-template.no-permission.description").stream()
                             .map(line -> {
                                 if (ClassUtils.INSTANCE.classExists("me.clip.placeholderapi.PlaceholderAPI")) {
                                     return PlaceholderAPI.setPlaceholders(player, line);
@@ -261,7 +316,7 @@ public class EffectsMenu {
                                     return ChatUtil.colorizeHex(line);
                                 }
                             })
-                            .collect(Collectors.toList());
+                            .toList();
                     for (String line : loreTemplate) {
                         if (line.contains("%description%")) {
                             for (String descLine : descriptionList) {
@@ -273,8 +328,8 @@ public class EffectsMenu {
                     }
 
                 } else if (DatabaseManager.isEffectSelected(player.getUniqueId().toString(), effectKey)) {
-                    itemDisplayName = guis.getString("effects-menu.item-template.selected.title", "%display-name%")
-                            .replace("%display-name%", displayName);
+                    itemDisplayName = ChatUtil.colorizeHex(guis.getString("effects-menu.item-template.selected.title", "%display-name%")
+                            .replace("%display-name%", displayName));
 
                     List<String> loreTemplate = guis.getStringList("effects-menu.item-template.selected.description").stream()
                             .map(line -> {
@@ -296,8 +351,8 @@ public class EffectsMenu {
                     }
 
                 } else {
-                    itemDisplayName = guis.getString("effects-menu.item-template.unselected.title", "%display-name%")
-                            .replace("%display-name%", displayName);
+                    itemDisplayName = ChatUtil.colorizeHex(guis.getString("effects-menu.item-template.unselected.title", "%display-name%")
+                            .replace("%display-name%", displayName));
 
                     List<String> loreTemplate = guis.getStringList("effects-menu.item-template.unselected.description").stream()
                             .map(line -> {
@@ -321,8 +376,14 @@ public class EffectsMenu {
 
                 String finalDisplayName = displayName;
                 GuiItem guiItem = ItemBuilder.from(displayItem)
-                        .name(Component.text(itemDisplayName))
-                        .lore(lore.stream().map(Component::text).collect(Collectors.toList()))
+                        .name(LegacyComponentSerializer.legacySection()
+                                .deserialize(itemDisplayName)
+                                .decoration(TextDecoration.ITALIC, false))
+                        .lore(lore.stream()
+                                .map(line -> LegacyComponentSerializer.legacySection()
+                                        .deserialize(line)
+                                        .decoration(TextDecoration.ITALIC, false))
+                                .collect(Collectors.toList()))
                         .asGuiItem(event -> {
                             try {
                                 if (!player.hasPermission("fungun.effect." + effectKey)) {
@@ -331,14 +392,8 @@ public class EffectsMenu {
                                     }
 
                                     String soundName = FunGun.getInstance().getConfigUtil().getGUIs().getString("effects-menu.item-template.no-permission.sound");
-
                                     if(!soundName.isEmpty()) {
-                                        try {
-                                            Sound sound = Sound.valueOf(soundName);
-                                            player.playSound(player.getLocation(), sound, 1, 1);
-                                        } catch (IllegalArgumentException e) {
-                                            getLogger().warning("The sound is invalid in guis.yml (effects-menu/item-template/no-permission)");
-                                        }
+                                        player.playSound(player.getLocation(), soundName, 1, 1);
                                     }
                                 }
 
@@ -346,15 +401,10 @@ public class EffectsMenu {
                                     if (!configUtil.getMessage("messages.effects-menu.effect-already-selected").isEmpty()) {
                                         player.sendMessage(configUtil.getMessage("messages.effects-menu.effect-already-selected").replace("%effect%", finalDisplayName));
                                     }
-                                    String soundName = FunGun.getInstance().getConfigUtil().getGUIs().getString("effects-menu.item-template.selected.sound");
 
+                                    String soundName = FunGun.getInstance().getConfigUtil().getGUIs().getString("effects-menu.item-template.selected.sound");
                                     if(!soundName.isEmpty()) {
-                                        try {
-                                            Sound sound = Sound.valueOf(soundName);
-                                            player.playSound(player.getLocation(), sound, 1, 1);
-                                        } catch (IllegalArgumentException e) {
-                                            getLogger().warning("The sound is invalid in guis.yml (effects-menu/item-template/selected)");
-                                        }
+                                        player.playSound(player.getLocation(), soundName, 1, 1);
                                     }
                                 }
 
@@ -366,14 +416,8 @@ public class EffectsMenu {
                                     }
 
                                     String soundName = FunGun.getInstance().getConfigUtil().getGUIs().getString("effects-menu.item-template.unselected.sound");
-
                                     if(!soundName.isEmpty()) {
-                                        try {
-                                            Sound sound = Sound.valueOf(soundName);
-                                            player.playSound(player.getLocation(), sound, 1, 1);
-                                        } catch (IllegalArgumentException e) {
-                                            getLogger().warning("The sound is invalid in guis.yml (effects-menu/item-template/unselected)");
-                                        }
+                                        player.playSound(player.getLocation(), soundName, 1, 1);
                                     }
 
                                     openMenu(player);

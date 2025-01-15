@@ -41,5 +41,4 @@ public class ChatUtil {
         }
         return coloredMessages;
     }
-
 }

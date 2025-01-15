@@ -11,8 +11,9 @@ import hu.kxtsoo.fungun.util.ChatUtil;
 import hu.kxtsoo.fungun.util.ConfigUtil;
 import me.clip.placeholderapi.PlaceholderAPI;
 import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.format.TextDecoration;
+import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer;
 import org.bukkit.Material;
-import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.meta.ItemMeta;
 
@@ -20,8 +21,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
-
-import static org.bukkit.Bukkit.getLogger;
 
 public class AbilitiesMenu {
 
@@ -44,7 +43,9 @@ public class AbilitiesMenu {
         int maxAbilitySlot = guis.getInt("abilities-menu.max-item-slot", totalSlots - 1);
 
         PaginatedGui gui = Gui.paginated()
-                .title(Component.text(title))
+                .title(LegacyComponentSerializer.legacySection()
+                        .deserialize(title)
+                        .decoration(TextDecoration.ITALIC, false))
                 .rows(rows)
                 .pageSize(maxAbilitySlot)
                 .create();
@@ -69,9 +70,26 @@ public class AbilitiesMenu {
         }
 
         previousPageName = ChatUtil.colorizeHex(previousPageName);
+        List<String> previousPageLore = guis.getStringList("abilities-menu.navigation.previous-page.lore").stream()
+                .map(line -> {
+                    if (ClassUtils.INSTANCE.classExists("me.clip.placeholderapi.PlaceholderAPI")) {
+                        return PlaceholderAPI.setPlaceholders(player, line);
+                    } else {
+                        return line;
+                    }
+                })
+                .map(ChatUtil::colorizeHex)
+                .toList();
 
         GuiItem previousPage = ItemBuilder.from(prevMaterial)
-                .name(Component.text(previousPageName))
+                .name(LegacyComponentSerializer.legacySection()
+                        .deserialize(previousPageName)
+                        .decoration(TextDecoration.ITALIC, false))
+                .lore(previousPageLore.stream()
+                        .map(line -> LegacyComponentSerializer.legacySection()
+                                .deserialize(line)
+                                .decoration(TextDecoration.ITALIC, false))
+                        .collect(Collectors.toList()))
                 .asGuiItem(event -> {
                     gui.previous();
 
@@ -102,9 +120,26 @@ public class AbilitiesMenu {
         }
 
         nextPageName = ChatUtil.colorizeHex(nextPageName);
+        List<String> nextPageLore = guis.getStringList("abilities-menu.navigation.next-page.lore").stream()
+                .map(line -> {
+                    if (ClassUtils.INSTANCE.classExists("me.clip.placeholderapi.PlaceholderAPI")) {
+                        return PlaceholderAPI.setPlaceholders(player, line);
+                    } else {
+                        return line;
+                    }
+                })
+                .map(ChatUtil::colorizeHex)
+                .toList();
 
         GuiItem nextPage = ItemBuilder.from(nextMaterial)
-                .name(Component.text(nextPageName))
+                .name(LegacyComponentSerializer.legacySection()
+                        .deserialize(nextPageName)
+                        .decoration(TextDecoration.ITALIC, false))
+                .lore(nextPageLore.stream()
+                        .map(line -> LegacyComponentSerializer.legacySection()
+                                .deserialize(line)
+                                .decoration(TextDecoration.ITALIC, false))
+                        .collect(Collectors.toList()))
                 .asGuiItem(event -> {
                     gui.next();
 
@@ -146,9 +181,26 @@ public class AbilitiesMenu {
         }
 
         closeMenuName = ChatUtil.colorizeHex(closeMenuName);
+        List<String> closeLore = guis.getStringList("abilities-menu.close-item.lore").stream()
+                .map(line -> {
+                    if (ClassUtils.INSTANCE.classExists("me.clip.placeholderapi.PlaceholderAPI")) {
+                        return PlaceholderAPI.setPlaceholders(player, line);
+                    } else {
+                        return line;
+                    }
+                })
+                .map(ChatUtil::colorizeHex)
+                .toList();
 
         GuiItem closeMenu = ItemBuilder.from(closeMaterial)
-                .name(Component.text(closeMenuName))
+                .name(LegacyComponentSerializer.legacySection()
+                        .deserialize(closeMenuName)
+                        .decoration(TextDecoration.ITALIC, false))
+                .lore(closeLore.stream()
+                        .map(line -> LegacyComponentSerializer.legacySection()
+                                .deserialize(line)
+                                .decoration(TextDecoration.ITALIC, false))
+                        .collect(Collectors.toList()))
                 .asGuiItem(event -> {
                     player.closeInventory();
 
@@ -209,7 +261,9 @@ public class AbilitiesMenu {
                 int slot = decoration.getInt("slot", 0);
 
                 GuiItem decorativeItem = ItemBuilder.from(displayItem)
-                        .name(Component.text(displayName))
+                        .name(LegacyComponentSerializer.legacySection()
+                                .deserialize(displayName)
+                                .decoration(TextDecoration.ITALIC, false))
                         .lore(lore.stream().map(Component::text).collect(Collectors.toList()))
                         .asGuiItem(event -> event.setCancelled(true));
 
@@ -262,8 +316,8 @@ public class AbilitiesMenu {
                 String itemDisplayName = "";
 
                 if (!player.hasPermission("fungun.ability." + abilityKey)) {
-                    itemDisplayName = guis.getString("abilities-menu.item-template.no-permission.title", "%display-name%")
-                            .replace("%display-name%", displayName);
+                    itemDisplayName = ChatUtil.colorizeHex(guis.getString("abilities-menu.item-template.no-permission.title", "%display-name%")
+                            .replace("%display-name%", displayName));
 
                     List<String> loreTemplate = guis.getStringList("abilities-menu.item-template.no-permission.description").stream()
                             .map(line -> {
@@ -287,8 +341,8 @@ public class AbilitiesMenu {
                     }
 
                 } else if (DatabaseManager.isAbilitySelected(player.getUniqueId().toString(), abilityKey)) {
-                    itemDisplayName = guis.getString("abilities-menu.item-template.selected.title", "%display-name%")
-                            .replace("%display-name%", displayName);
+                    itemDisplayName = ChatUtil.colorizeHex(guis.getString("abilities-menu.item-template.selected.title", "%display-name%")
+                            .replace("%display-name%", displayName));
 
                     List<String> loreTemplate = guis.getStringList("abilities-menu.item-template.selected.description").stream()
                             .map(line -> {
@@ -311,8 +365,8 @@ public class AbilitiesMenu {
                     }
 
                 } else {
-                    itemDisplayName = guis.getString("abilities-menu.item-template.unselected.title", "%display-name%")
-                            .replace("%display-name%", displayName);
+                    itemDisplayName = ChatUtil.colorizeHex(guis.getString("abilities-menu.item-template.unselected.title", "%display-name%")
+                            .replace("%display-name%", displayName));
 
                     List<String> loreTemplate = guis.getStringList("abilities-menu.item-template.unselected.description").stream()
                             .map(line -> {
@@ -337,8 +391,14 @@ public class AbilitiesMenu {
 
                 String finalDisplayName = displayName;
                 GuiItem guiItem = ItemBuilder.from(displayItem)
-                        .name(Component.text(itemDisplayName))
-                        .lore(lore.stream().map(Component::text).collect(Collectors.toList()))
+                        .name(LegacyComponentSerializer.legacySection()
+                                .deserialize(itemDisplayName)
+                                .decoration(TextDecoration.ITALIC, false))
+                        .lore(lore.stream()
+                                .map(line -> LegacyComponentSerializer.legacySection()
+                                        .deserialize(line)
+                                        .decoration(TextDecoration.ITALIC, false))
+                                .collect(Collectors.toList()))
                         .asGuiItem(event -> {
                             try {
                                 if (!player.hasPermission("fungun.ability." + abilityKey)) {
@@ -347,28 +407,17 @@ public class AbilitiesMenu {
                                     }
 
                                     String soundName = FunGun.getInstance().getConfigUtil().getGUIs().getString("abilities-menu.item-template.no-permission.sound");
-
                                     if (!soundName.isEmpty()) {
-                                        try {
-                                            Sound sound = Sound.valueOf(soundName);
-                                            player.playSound(player.getLocation(), sound, 1, 1);
-                                        } catch (IllegalArgumentException e) {
-                                            getLogger().warning("The sound is invalid in guis.yml (abilities-menu/item-template/no-permission)");
-                                        }
+                                        player.playSound(player.getLocation(), soundName, 1, 1);
                                     }
                                 } else if (DatabaseManager.isAbilitySelected(player.getUniqueId().toString(), abilityKey)) {
                                     if (!configUtil.getMessage("messages.abilities-menu.ability-already-selected").isEmpty()) {
                                         player.sendMessage(configUtil.getMessage("messages.abilities-menu.ability-already-selected").replace("%ability%", finalDisplayName));
                                     }
-                                    String soundName = FunGun.getInstance().getConfigUtil().getGUIs().getString("abilities-menu.item-template.selected.sound");
 
+                                    String soundName = FunGun.getInstance().getConfigUtil().getGUIs().getString("abilities-menu.item-template.selected.sound");
                                     if (!soundName.isEmpty()) {
-                                        try {
-                                            Sound sound = Sound.valueOf(soundName);
-                                            player.playSound(player.getLocation(), sound, 1, 1);
-                                        } catch (IllegalArgumentException e) {
-                                            getLogger().warning("The sound is invalid in guis.yml (abilities-menu/item-template/selected)");
-                                        }
+                                        player.playSound(player.getLocation(), soundName, 1, 1);
                                     }
                                 } else {
                                     DatabaseManager.saveSelectedAbility(player.getUniqueId().toString(), abilityKey);
@@ -378,14 +427,8 @@ public class AbilitiesMenu {
                                     }
 
                                     String soundName = FunGun.getInstance().getConfigUtil().getGUIs().getString("abilities-menu.item-template.unselected.sound");
-
                                     if (!soundName.isEmpty()) {
-                                        try {
-                                            Sound sound = Sound.valueOf(soundName);
-                                            player.playSound(player.getLocation(), sound, 1, 1);
-                                        } catch (IllegalArgumentException e) {
-                                            getLogger().warning("The sound is invalid in guis.yml (abilities-menu/item-template/unselected)");
-                                        }
+                                        player.playSound(player.getLocation(), soundName, 1, 1);
                                     }
 
                                     openMenu(player);
