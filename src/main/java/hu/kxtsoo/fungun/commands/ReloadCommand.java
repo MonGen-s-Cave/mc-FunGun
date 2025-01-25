@@ -30,6 +30,7 @@ public class ReloadCommand extends BaseCommand {
         }
 
         try {
+            DatabaseManager.close();
             DatabaseManager.initialize(FunGun.getInstance().getConfigUtil(), FunGun.getInstance());
             sender.sendMessage(FunGun.getInstance().getConfigUtil().getMessage("messages.reload-command.db-success"));
         } catch (SQLException e) {

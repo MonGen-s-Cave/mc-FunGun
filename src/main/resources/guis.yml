@@ -6,11 +6,11 @@ effects-menu:
   max-item-slot: 18
 
   # Leave "" if you want to disable the function.
-  open-sound: "BLOCK_BARREL_OPEN"
+  open-sound: "block.barrel.open"
 
   item-template:
     no-permission:
-      sound: "ENTITY_VILLAGER_NO"
+      sound: "entity.villager.no"
       title: '%display-name%'
       description:
         - '&8ғᴜɴɢᴜɴ ᴇғғᴇᴄᴛ'
@@ -21,7 +21,7 @@ effects-menu:
         - "&c- ʏᴏᴜ ᴅᴏɴ'ᴛ ʜᴀᴠᴇ ᴘᴇʀᴍɪssɪᴏɴ ғᴏʀ ᴛʜɪs ᴇғғᴇᴄᴛ"
         - "&7ᴘʟᴇᴀsᴇ ᴄᴏɴᴛᴀᴄᴛ ᴀɴ ᴀᴅᴍɪɴ."
     selected:
-      sound: "ENTITY_WANDERING_TRADER_NO"
+      sound: "entity.wandering_trader.no"
       title: '%display-name%'
       description:
         - '&8ғᴜɴɢᴜɴ ᴇғғᴇᴄᴛ'
@@ -32,7 +32,7 @@ effects-menu:
         - "&a- ᴛʜɪs ᴇғғᴇᴄᴛ ɪs ᴀʟʀᴇᴀᴅʏ sᴇʟᴇᴄᴛᴇᴅ"
         - "&7ʏᴏᴜ ᴄᴀɴ'ᴛ sᴇʟᴇᴄᴛ ɪᴛ ᴀɢᴀɪɴ."
     unselected:
-      sound: "UI_LOOM_SELECT_PATTERN"
+      sound: "ui.loom.select_pattern"
       title: '%display-name%'
       description:
         - '&8ғᴜɴɢᴜɴ ᴇғғᴇᴄᴛ'
@@ -46,18 +46,18 @@ effects-menu:
       slots: [20]
       item: "ARROW"
       name: "&ePrevious Page"
-      sound: "ENTITY_ARROW_HIT_PLAYER"
+      sound: "entity.arrow.hit_player"
     next-page:
       slots: [24]
       item: "SPECTRAL_ARROW"
       name: "&aNext Page"
-      sound: "ENTITY_ARROW_HIT_PLAYER"
+      sound: "entity.arrow.hit_player"
 
   close-item:
     slots: [22]
     item: "BARRIER"
     name: "&cClose Menu"
-    sound: "BLOCK_BARREL_CLOSE"
+    sound: "block.barrel.close"
 
   decoration:
     1:
@@ -97,25 +97,25 @@ abilities-menu:
   title: "&aFunGun Abilities Menu"
   rows: 3
   max-item-slot: 21
-  open-sound: "BLOCK_BARREL_OPEN"
+  open-sound: "block.barrel.open"
 
   navigation:
     previous-page:
       slots: [20]
       item: "ARROW"
       name: "&ePrevious Page"
-      sound: "ENTITY_ARROW_HIT_PLAYER"
+      sound: "entity.arrow.hit_player"
     next-page:
       slots: [24]
       item: "SPECTRAL_ARROW"
       name: "&aNext Page"
-      sound: "ENTITY_ARROW_HIT_PLAYER"
+      sound: "entity.arrow.hit_player"
 
   close-item:
     slots: [22]
     item: "BARRIER"
     name: "&cClose Menu"
-    sound: "BLOCK_BARREL_CLOSE"
+    sound: "block.barrel.close"
 
   decoration:
     1:
@@ -151,7 +151,7 @@ abilities-menu:
 
   item-template:
     no-permission:
-      sound: "ENTITY_VILLAGER_NO"
+      sound: "entity.villager.no"
       title: '%display-name%'
       description:
         - '&8ғᴜɴɢᴜɴ ᴇғғᴇᴄᴛ'
@@ -162,7 +162,7 @@ abilities-menu:
         - "&c- ʏᴏᴜ ᴅᴏɴ'ᴛ ʜᴀᴠᴇ ᴘᴇʀᴍɪssɪᴏɴ ғᴏʀ ᴛʜɪs ᴇғғᴇᴄᴛ"
         - "&7ᴘʟᴇᴀsᴇ ᴄᴏɴᴛᴀᴄᴛ ᴀɴ ᴀᴅᴍɪɴ."
     selected:
-      sound: "ENTITY_WANDERING_TRADER_NO"
+      sound: "entity.wandering_trader.no"
       title: '%display-name%'
       description:
         - '&8ғᴜɴɢᴜɴ ᴇғғᴇᴄᴛ'
@@ -173,7 +173,7 @@ abilities-menu:
         - "&a- ᴛʜɪs ᴇғғᴇᴄᴛ ɪs ᴀʟʀᴇᴀᴅʏ sᴇʟᴇᴄᴛᴇᴅ"
         - "&7ʏᴏᴜ ᴄᴀɴ'ᴛ sᴇʟᴇᴄᴛ ɪᴛ ᴀɢᴀɪɴ."
     unselected:
-      sound: "UI_LOOM_SELECT_PATTERN"
+      sound: "ui.loom.select_pattern"
       title: '%display-name%'
       description:
         - '&8ғᴜɴɢᴜɴ ᴇғғᴇᴄᴛ'
@@ -183,4 +183,4 @@ abilities-menu:
         - "&r"
         - "&6⭐ ᴄʟɪᴄᴋ ʜᴇʀᴇ ᴛᴏ sᴇʟᴇᴄᴛ"
 
-guis-version: "2"
+guis-version: "3"
