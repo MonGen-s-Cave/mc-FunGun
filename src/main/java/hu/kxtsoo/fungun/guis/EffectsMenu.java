@@ -431,7 +431,7 @@ public class EffectsMenu {
                 gui.addItem(guiItem);
             }
         }
-
+        gui.disableAllInteractions();
         gui.open(player);
     }
 }
