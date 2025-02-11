@@ -442,7 +442,7 @@ public class AbilitiesMenu {
                 gui.addItem(guiItem);
             }
         }
-
+        gui.disableAllInteractions();
         gui.open(player);
     }
 }
