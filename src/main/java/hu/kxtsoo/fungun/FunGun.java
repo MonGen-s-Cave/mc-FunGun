@@ -31,12 +31,7 @@ public final class FunGun extends JavaPlugin {
         this.configUtil = new ConfigUtil(this);
         ConfigUtil.configUtil = this.configUtil;
 
-        SchedulerManager.run(new Runnable() {
-            @Override
-            public void run() {
-                new HookManager().updateHooks();
-            }
-        });
+        SchedulerManager.run(() -> new HookManager().updateHooks());
 
         try {
             DatabaseManager.initialize(configUtil, this);
