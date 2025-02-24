@@ -15,10 +15,14 @@ public class PlayerJoinListener implements Listener {
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent event) {
         Player player = event.getPlayer();
+
+        if(!FunGun.getInstance().getConfigUtil().getConfig().getBoolean("fungun.options.give-on-join", true)) return;
+
         for(String world : FunGun.getInstance().getConfigUtil().getConfig().getStringList("fungun.options.disabled-worlds")){
             if(world.equals(player.getWorld().getName()))
                 return;
         }
+
         int slot = FunGun.getInstance().getConfigUtil().getConfig().getInt("fungun.options.slot") - 1;
         if (slot >= 0 && slot < 9) {
             if(!isWorldDisabled(player.getWorld()))
