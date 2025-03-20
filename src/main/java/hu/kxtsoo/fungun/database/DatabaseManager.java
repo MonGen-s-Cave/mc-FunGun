@@ -71,4 +71,16 @@ public class DatabaseManager {
             database.close();
         }
     }
+
+    public static String getDatabaseType() {
+        if (database instanceof MySQL) {
+            return "MySQL";
+        } else if (database instanceof SQLite) {
+            return "SQLite";
+        } else if (database instanceof H2) {
+            return "H2";
+        } else {
+            return "Unknown";
+        }
+    }
 }

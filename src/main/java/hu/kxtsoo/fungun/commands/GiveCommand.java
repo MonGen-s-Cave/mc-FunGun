@@ -29,7 +29,9 @@ public class GiveCommand extends BaseCommand {
         ItemStack funGunItem = FunGunItem.createFunGunItem(FunGun.getInstance().getConfigUtil());
 
         if (slot != null) {
-            if (slot < 0 || slot >= target.getInventory().getSize()) {
+            slot -= 1;
+
+            if (slot < 0 || slot > 8) {
                 sender.sendMessage(FunGun.getInstance().getConfigUtil().getMessage("messages.give-command.invalid-slot"));
                 return;
             }

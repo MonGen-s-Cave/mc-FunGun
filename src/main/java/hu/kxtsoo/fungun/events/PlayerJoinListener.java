@@ -24,9 +24,10 @@ public class PlayerJoinListener implements Listener {
         }
 
         int slot = FunGun.getInstance().getConfigUtil().getConfig().getInt("fungun.options.slot") - 1;
-        if (slot >= 0 && slot < 9) {
-            if(!isWorldDisabled(player.getWorld()))
+        if (slot >= 0 && slot <= 8) {
+            if (!isWorldDisabled(player.getWorld())) {
                 player.getInventory().setItem(slot, FunGunItem.createFunGunItem(FunGun.getInstance().getConfigUtil()));
+            }
         } else {
             getLogger().warning("Invalid slot number in config.yml. Must be between 1 and 9.");
         }
