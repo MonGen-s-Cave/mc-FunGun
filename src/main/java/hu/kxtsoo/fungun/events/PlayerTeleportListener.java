@@ -15,13 +15,17 @@ public class PlayerTeleportListener implements Listener {
     @EventHandler
     public void onPlayerTeleport(PlayerTeleportEvent event) {
         Player player = event.getPlayer();
+
         int slot = FunGun.getInstance().getConfigUtil().getConfig().getInt("fungun.options.slot") - 1;
-        if (slot <= 0 || slot > 9) {
+        if (slot >= 0 && slot <= 8) {
+            if (!isWorldDisabled(player.getWorld())) {
+                player.getInventory().setItem(slot, FunGunItem.createFunGunItem(FunGun.getInstance().getConfigUtil()));
+            }
+        } else {
             getLogger().warning("Invalid slot number in config.yml. Must be between 1 and 9.");
-            return;
         }
+
         if(!isWorldDisabled(player.getWorld()))
             player.getInventory().setItem(slot, FunGunItem.createFunGunItem(FunGun.getInstance().getConfigUtil()));
     }
-
 }
