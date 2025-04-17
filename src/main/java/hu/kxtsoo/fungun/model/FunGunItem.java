@@ -40,9 +40,12 @@ public class FunGunItem {
             return false;
         }
 
-        return item.getType() == funGunItem.getType() &&
-                Objects.equals(item.getItemMeta().displayName(), funGunItem.getItemMeta().displayName()) &&
-                Objects.equals(item.getItemMeta().lore(), funGunItem.getItemMeta().lore());
+        ItemMeta itemMeta = item.getItemMeta();
+        ItemMeta funMeta = funGunItem.getItemMeta();
+
+        return item.getType() == funGunItem.getType()
+                && Objects.equals(itemMeta.getDisplayName(), funMeta.getDisplayName())
+                && Objects.equals(itemMeta.getLore(), funMeta.getLore());
     }
 
     public static boolean isWorldDisabled(World world){
