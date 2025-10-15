@@ -1,4 +1,4 @@
-package hu.kxtsoo.fungun.events;
+package hu.kxtsoo.fungun.listener;
 
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -10,8 +10,8 @@ public class FallingBlockListener implements Listener {
 
     @EventHandler(priority = EventPriority.HIGHEST)
     public void onFallingBlockChange(EntityChangeBlockEvent event) {
-        if (event.getEntity() instanceof FallingBlock) {
-            event.setCancelled(true);
+        if (event.getEntity() instanceof FallingBlock fallingBlock) {
+            if (fallingBlock.hasMetadata("fungun_visual")) event.setCancelled(true);
         }
     }
 }

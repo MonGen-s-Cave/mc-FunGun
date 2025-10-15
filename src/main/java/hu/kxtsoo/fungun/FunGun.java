@@ -1,7 +1,7 @@
 package hu.kxtsoo.fungun;
 
 import hu.kxtsoo.fungun.database.DatabaseManager;
-import hu.kxtsoo.fungun.events.*;
+import hu.kxtsoo.fungun.listener.*;
 import hu.kxtsoo.fungun.hooks.HookManager;
 import hu.kxtsoo.fungun.manager.CommandManager;
 import hu.kxtsoo.fungun.manager.CooldownManager;

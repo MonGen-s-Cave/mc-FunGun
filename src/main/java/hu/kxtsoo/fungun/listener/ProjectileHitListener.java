@@ -1,4 +1,4 @@
-package hu.kxtsoo.fungun.events;
+package hu.kxtsoo.fungun.listener;
 
 import dev.dejvokep.boostedyaml.YamlDocument;
 import hu.kxtsoo.fungun.FunGun;

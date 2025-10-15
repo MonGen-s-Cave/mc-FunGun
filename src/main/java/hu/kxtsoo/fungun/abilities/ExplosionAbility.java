@@ -10,6 +10,7 @@ import org.bukkit.block.Block;
 import org.bukkit.block.data.BlockData;
 import org.bukkit.entity.FallingBlock;
 import org.bukkit.entity.Player;
+import org.bukkit.metadata.FixedMetadataValue;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.util.Vector;
 
@@ -195,6 +196,7 @@ public class ExplosionAbility extends AbilityHandler {
                         fallingBlock.setHurtEntities(false);
                         fallingBlock.setPersistent(false);
                         fallingBlock.setGravity(true);
+                        fallingBlock.setMetadata("fungun_visual", new FixedMetadataValue(plugin, true));
 
                         blockCount++;
                     }

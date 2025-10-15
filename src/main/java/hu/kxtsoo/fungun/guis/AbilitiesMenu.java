@@ -81,6 +81,7 @@ public class AbilitiesMenu {
                 .map(ChatUtil::colorizeHex)
                 .toList();
 
+        // Hiba
         GuiItem previousPage = ItemBuilder.from(prevMaterial)
                 .name(LegacyComponentSerializer.legacySection()
                         .deserialize(previousPageName)

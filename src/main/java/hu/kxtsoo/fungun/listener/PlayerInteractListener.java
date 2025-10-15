@@ -1,4 +1,4 @@
-package hu.kxtsoo.fungun.events;
+package hu.kxtsoo.fungun.listener;
 
 import hu.kxtsoo.fungun.FunGun;
 import hu.kxtsoo.fungun.abilities.AbilityHandler;
