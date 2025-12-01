@@ -41,9 +41,7 @@ public class EffectsMenu {
         int maxEffectSlot = guis.getInt("effects-menu.max-item-slot", totalSlots - 1);
 
         PaginatedGui gui = Gui.paginated()
-                .title(LegacyComponentSerializer.legacySection()
-                        .deserialize(title)
-                        .decoration(TextDecoration.ITALIC, false))
+                .title(Component.text(title))
                 .rows(rows)
                 .pageSize(maxEffectSlot)
                 .create();
@@ -79,9 +77,7 @@ public class EffectsMenu {
                 .toList();
 
         GuiItem previousPage = ItemBuilder.from(prevMaterial)
-                .name(LegacyComponentSerializer.legacySection()
-                        .deserialize(previousPageName)
-                        .decoration(TextDecoration.ITALIC, false))
+                .name(Component.text(previousPageName))
                 .lore(previousPageLore.stream()
                         .map(line -> LegacyComponentSerializer.legacySection()
                                 .deserialize(line)
@@ -118,9 +114,7 @@ public class EffectsMenu {
                 .toList();
 
         GuiItem nextPage = ItemBuilder.from(nextMaterial)
-                .name(LegacyComponentSerializer.legacySection()
-                        .deserialize(nextPageName)
-                        .decoration(TextDecoration.ITALIC, false))
+                .name(Component.text(nextPageName))
                 .lore(nextPageLore.stream()
                         .map(line -> LegacyComponentSerializer.legacySection()
                                 .deserialize(line)
@@ -186,9 +180,7 @@ public class EffectsMenu {
                 .toList();
 
         GuiItem closeMenu = ItemBuilder.from(closeMaterial)
-                .name(LegacyComponentSerializer.legacySection()
-                        .deserialize(closeMenuName)
-                        .decoration(TextDecoration.ITALIC, false))
+                .name(Component.text(closeMenuName))
                 .lore(closeLore.stream()
                         .map(line -> LegacyComponentSerializer.legacySection()
                                 .deserialize(line)
@@ -376,9 +368,7 @@ public class EffectsMenu {
 
                 String finalDisplayName = displayName;
                 GuiItem guiItem = ItemBuilder.from(displayItem)
-                        .name(LegacyComponentSerializer.legacySection()
-                                .deserialize(itemDisplayName)
-                                .decoration(TextDecoration.ITALIC, false))
+                        .name(Component.text(itemDisplayName))
                         .lore(lore.stream()
                                 .map(line -> LegacyComponentSerializer.legacySection()
                                         .deserialize(line)

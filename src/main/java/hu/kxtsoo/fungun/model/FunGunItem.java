@@ -7,6 +7,7 @@ import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 import java.util.Objects;
@@ -14,7 +15,8 @@ import java.util.stream.Collectors;
 
 public class FunGunItem {
 
-    public static ItemStack createFunGunItem(ConfigUtil configUtil) {
+    @NotNull
+    public static ItemStack createFunGunItem(@NotNull ConfigUtil configUtil) {
         Material itemType = Material.getMaterial(configUtil.getConfig().getString("fungun.item", "BLAZE_ROD"));
         String itemName = ChatUtil.colorizeHex(configUtil.getConfig().getString("fungun.name"));
         List<String> itemLore = configUtil.getConfig().getStringList("fungun.lore");
@@ -48,7 +50,7 @@ public class FunGunItem {
                 && Objects.equals(itemMeta.getLore(), funMeta.getLore());
     }
 
-    public static boolean isWorldDisabled(World world){
+    public static boolean isWorldDisabled(@NotNull World world){
         return FunGun.getInstance().getConfigUtil().getConfig().getStringList("fungun.options.disabled-worlds").contains(world.getName());
     }
 }

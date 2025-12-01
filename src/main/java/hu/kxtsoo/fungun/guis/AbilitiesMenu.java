@@ -43,9 +43,7 @@ public class AbilitiesMenu {
         int maxAbilitySlot = guis.getInt("abilities-menu.max-item-slot", totalSlots - 1);
 
         PaginatedGui gui = Gui.paginated()
-                .title(LegacyComponentSerializer.legacySection()
-                        .deserialize(title)
-                        .decoration(TextDecoration.ITALIC, false))
+                .title(Component.text(title))
                 .rows(rows)
                 .pageSize(maxAbilitySlot)
                 .create();

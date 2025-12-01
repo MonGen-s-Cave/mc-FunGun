@@ -25,8 +25,7 @@ public final class FunGun extends JavaPlugin {
     public void onEnable() {
         instance = this;
 
-        int pluginId = 23693;
-        new Metrics(this, pluginId);
+        new Metrics(this, 23693);
 
         this.configUtil = new ConfigUtil(this);
         ConfigUtil.configUtil = this.configUtil;
