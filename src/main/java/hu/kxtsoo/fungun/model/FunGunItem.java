@@ -14,6 +14,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@SuppressWarnings("deprecation")
 public final class FunGunItem {
     private static final NamespacedKey KEY = new NamespacedKey(FunGun.getInstance(), "fungun-id");
     private static final String VALUE = "FUN_GUN";
@@ -54,11 +55,39 @@ public final class FunGunItem {
         return VALUE.equals(stored);
     }
 
+    public static boolean canHaveFunGun(@NotNull World world) {
+        if (isWorldDisabled(world)) {
+            return false;
+        }
+
+        List<String> allowed = FunGun.getInstance()
+                .getConfigUtil()
+                .getConfig()
+                .getStringList("fungun.options.allowed-worlds");
+
+        if (!allowed.isEmpty()) {
+            return allowed.contains(world.getName());
+        }
+
+        return true;
+    }
+
     public static boolean isWorldDisabled(@NotNull World world) {
         return FunGun.getInstance()
                 .getConfigUtil()
                 .getConfig()
                 .getStringList("fungun.options.disabled-worlds")
                 .contains(world.getName());
+    }
+
+    public static boolean isWorldAllowed(@NotNull World world) {
+        List<String> whitelist = FunGun.getInstance()
+                .getConfigUtil()
+                .getConfig()
+                .getStringList("fungun.options.allowed-worlds");
+
+        if (whitelist.isEmpty()) return true;
+
+        return whitelist.contains(world.getName());
     }
 }

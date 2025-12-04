@@ -10,11 +10,12 @@ import org.bukkit.event.inventory.ClickType;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.inventory.ItemStack;
+import org.jetbrains.annotations.NotNull;
 
 public class InventoryClickListener implements Listener {
 
     @EventHandler
-    public void onInventoryClick(InventoryClickEvent event) {
+    public void onInventoryClick(@NotNull InventoryClickEvent event) {
         if (event.getClickedInventory() == null) return;
 
         Player player = (Player) event.getWhoClicked();
@@ -35,7 +36,7 @@ public class InventoryClickListener implements Listener {
         }
     }
 
-    private boolean isInPlayerOrCraftingInventory(InventoryClickEvent event) {
+    private boolean isInPlayerOrCraftingInventory(@NotNull InventoryClickEvent event) {
         return event.getClickedInventory().getType() == InventoryType.CRAFTING ||
                 event.getClickedInventory().getType() == InventoryType.PLAYER;
     }

@@ -6,7 +6,7 @@
 
     <groupId>hu.kxtsoo</groupId>
     <artifactId>mc-FunGun</artifactId>
-    <version>2.4.13</version>
+    <version>2.4.14</version>
     <packaging>jar</packaging>
 
     <name>mc-FunGun</name>
